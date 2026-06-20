@@ -12,68 +12,25 @@ class DashboardSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 180,
+      expandedHeight: 120,
       pinned: true,
       backgroundColor: AppColors.primary,
+      elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        titlePadding: const EdgeInsets.only(left: 16, bottom: 16),
+        titlePadding: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
         title: LayoutBuilder(
           builder: (context, constraints) {
             bool isCollapsed = constraints.biggest.height <= kToolbarHeight + 20;
-            return Row(
-              children: [
-                if (isCollapsed)
-                  AppAvatar(imageUrl: doctor.avatarUrl, size: 36)
-                else
-                  const SizedBox.shrink(),
-                if (isCollapsed) const SizedBox(width: 12),
-                Text(
-                  isCollapsed ? 'Dasbor' : 'Selamat Pagi,\ndr. ${doctor.name}',
-                  style: isCollapsed 
-                      ? AppTextStyles.h3.copyWith(color: Colors.white)
-                      : AppTextStyles.h3.copyWith(color: Colors.white, height: 1.2),
-                ),
-              ],
+            return Text(
+              isCollapsed ? 'Dasbor' : 'Halo,\ndr. ${doctor.name}',
+              style: isCollapsed 
+                  ? AppTextStyles.h3.copyWith(color: Colors.white)
+                  : AppTextStyles.h3.copyWith(color: Colors.white, height: 1.2),
             );
           },
         ),
-        background: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [AppColors.primaryDark, AppColors.primaryLight],
-                ),
-              ),
-            ),
-            // Decorative circle
-            Positioned(
-              right: -50,
-              top: -50,
-              child: Container(
-                width: 200,
-                height: 200,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white.withValues(alpha: 0.1),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 16,
-              top: 60,
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white.withValues(alpha: 0.2),
-                ),
-                child: AppAvatar(imageUrl: doctor.avatarUrl, size: 64),
-              ),
-            ),
-          ],
+        background: Container(
+          color: AppColors.primary,
         ),
       ),
       actions: [
@@ -96,6 +53,12 @@ class DashboardSliverAppBar extends StatelessWidget {
             ],
           ),
           onPressed: () {},
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 16, left: 8),
+          child: Center(
+            child: AppAvatar(imageUrl: doctor.avatarUrl, size: 36),
+          ),
         ),
       ],
     );
