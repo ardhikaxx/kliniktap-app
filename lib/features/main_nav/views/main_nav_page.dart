@@ -6,6 +6,8 @@ import '../../dashboard/views/dashboard_page.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../medical_record/views/medical_record_page.dart';
 import '../../schedule_profile/views/schedule_profile_page.dart';
+import '../../full_calendar/views/full_calendar_page.dart';
+import '../../bed_management/views/bed_management_page.dart';
 
 class MainNavPage extends GetView<MainNavController> {
   const MainNavPage({super.key});
@@ -14,6 +16,8 @@ class MainNavPage extends GetView<MainNavController> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       const DashboardPage(),
+      const FullCalendarPage(),
+      const BedManagementPage(),
       const MedicalRecordPage(),
       const ScheduleProfilePage(),
     ];
@@ -28,10 +32,10 @@ class MainNavPage extends GetView<MainNavController> {
       bottomNavigationBar: Obx(
         () => SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             child: Container(
               height: 72,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 color: Colors.white.withValues(alpha: 0.95),
                 borderRadius: BorderRadius.circular(36),
@@ -47,8 +51,10 @@ class MainNavPage extends GetView<MainNavController> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildNavItem(0, Icons.dashboard_rounded, 'Dasbor'),
-                  _buildNavItem(1, Icons.folder_shared_rounded, 'EMR'),
-                  _buildNavItem(2, Icons.person_rounded, 'Profil'),
+                  _buildNavItem(1, Icons.calendar_month_rounded, 'Jadwal'),
+                  _buildNavItem(2, Icons.bed_rounded, 'Bangsal'),
+                  _buildNavItem(3, Icons.folder_shared_rounded, 'EMR'),
+                  _buildNavItem(4, Icons.person_rounded, 'Profil'),
                 ],
               ),
             ),
@@ -66,7 +72,7 @@ class MainNavPage extends GetView<MainNavController> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOutCubic,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary.withValues(alpha: 0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(24),
@@ -84,10 +90,10 @@ class MainNavPage extends GetView<MainNavController> {
               curve: Curves.easeOutCubic,
               child: isSelected
                   ? Padding(
-                      padding: const EdgeInsets.only(left: 8),
+                      padding: const EdgeInsets.only(left: 6),
                       child: Text(
                         label,
-                        style: AppTextStyles.bodySmall.copyWith(
+                        style: AppTextStyles.caption.copyWith(
                           color: AppColors.primary,
                           fontWeight: FontWeight.w700,
                         ),
