@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../app/theme/app_colors.dart';
 import '../controllers/prescription_controller.dart';
 import '../widgets/medicine_autocomplete_field.dart';
 import '../widgets/dosage_frequency_chips.dart';
@@ -13,13 +14,15 @@ class PrescriptionPage extends GetView<PrescriptionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Buat Resep'),
-      ),
-      body: Obx(() {
-        return Column(
-          children: [
-            Expanded(
+      backgroundColor: AppColors.background,
+      body: Stack(
+        children: [
+          // Main content
+          Obx(() {
+            return Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).padding.top + 90),
+                Expanded(
               child: Stepper(
                 type: StepperType.horizontal,
                 currentStep: controller.currentStep.value,
@@ -107,9 +110,64 @@ class PrescriptionPage extends GetView<PrescriptionController> {
               ),
             ),
             const PrescriptionConfirmButton(),
-          ],
-        );
-      }),
+              ],
+            );
+          }),
+          
+          // Floating Header
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Container(
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.95),
+                    borderRadius: BorderRadius.circular(32),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.08),
+                        blurRadius: 24,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 8),
+                      InkWell(
+                        onTap: () => Get.back(),
+                        borderRadius: BorderRadius.circular(24),
+                        child: Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: AppColors.background,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textPrimary, size: 18),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Buat Resep',
+                          textAlign: TextAlign.center,
+                          style: AppTextStyles.h2.copyWith(fontSize: 18, color: AppColors.textPrimary),
+                        ),
+                      ),
+                      const SizedBox(width: 56), // To balance the space of the left button
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
