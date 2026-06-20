@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import '../../main_nav/controllers/main_nav_controller.dart';
 
 class PatientDashboardPage extends StatelessWidget {
   const PatientDashboardPage({super.key});
@@ -67,26 +68,31 @@ class PatientDashboardPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 
                 // Premium Grid Services
-                GridView.count(
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 0.8,
-                  children: [
-                    _buildIconService(Icons.domain_verification_rounded, 'Reservasi\nPoli', const Color(0xFF3B82F6)),
-                    _buildIconService(Icons.monitor_heart_rounded, 'Rekam\nMedis', const Color(0xFF10B981)),
-                    _buildIconService(Icons.video_camera_front_rounded, 'Tele\nKonsul', const Color(0xFFF59E0B)),
-                    _buildIconService(Icons.receipt_long_rounded, 'Tagihan\nRS', const Color(0xFF8B5CF6)),
-                    _buildIconService(Icons.medical_services_rounded, 'Farmasi', const Color(0xFFEC4899)),
-                    _buildIconService(Icons.science_rounded, 'Hasil\nLab', const Color(0xFF14B8A6)),
-                    _buildIconService(Icons.emergency_rounded, 'IGD\nDarurat', const Color(0xFFEF4444)),
-                    _buildIconService(Icons.grid_view_rounded, 'Semua\nMenu', AppColors.textSecondary),
-                  ],
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final itemWidth = (constraints.maxWidth - (3 * 12)) / 4;
+                    return Wrap(
+                      spacing: 12,
+                      runSpacing: 20,
+                      children: [
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.domain_verification_rounded, 'Reservasi\nPoli', const Color(0xFF3B82F6), () {
+                          Get.find<MainNavController>().changeTab(1);
+                        })),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.monitor_heart_rounded, 'Rekam\nMedis', const Color(0xFF10B981), () {
+                          Get.find<MainNavController>().changeTab(2);
+                        })),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.video_camera_front_rounded, 'Tele\nKonsul', const Color(0xFFF59E0B), () => Get.toNamed('/teleconsultation'))),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.receipt_long_rounded, 'Tagihan\nRS', const Color(0xFF8B5CF6), () => Get.toNamed('/hospital-billing'))),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.medical_services_rounded, 'Farmasi', const Color(0xFFEC4899), () => Get.toNamed('/pharmacy'))),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.science_rounded, 'Hasil\nLab', const Color(0xFF14B8A6), () => Get.toNamed('/lab-results'))),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.emergency_rounded, 'IGD\nDarurat', const Color(0xFFEF4444), () => Get.toNamed('/emergency'))),
+                        SizedBox(width: itemWidth, child: _buildIconService(Icons.grid_view_rounded, 'Semua\nMenu', AppColors.textSecondary, () => Get.toNamed('/all-services'))),
+                      ],
+                    );
+                  }
                 ),
                 
-                const SizedBox(height: 40),
+                const SizedBox(height: 24),
                 
                 // Active Queue (Boarding Pass Style)
                 Text('Antrean Aktif Saat Ini', style: AppTextStyles.h2.copyWith(fontSize: 20)),
@@ -240,30 +246,34 @@ class PatientDashboardPage extends StatelessWidget {
     );
   }
 
-  Widget _buildIconService(IconData icon, String title, Color color) {
-    return Column(
-      children: [
-        Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: color.withValues(alpha: 0.2)),
+  Widget _buildIconService(IconData icon, String title, Color color, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Column(
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: color.withValues(alpha: 0.2)),
+            ),
+            child: Icon(icon, color: color, size: 28),
           ),
-          child: Icon(icon, color: color, size: 28),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.caption.copyWith(
-            fontWeight: FontWeight.w600,
-            color: AppColors.textPrimary,
-            height: 1.2,
+          const SizedBox(height: 8),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: AppTextStyles.caption.copyWith(
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+              height: 1.2,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
