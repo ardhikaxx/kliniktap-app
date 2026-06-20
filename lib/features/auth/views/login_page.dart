@@ -83,16 +83,22 @@ class LoginPage extends StatelessWidget {
               
               const SizedBox(height: 40),
               Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Belum terdaftar di Rumah Sakit? ',
-                    style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
-                    children: [
-                      TextSpan(
-                        text: 'Daftar Baru',
-                        style: AppTextStyles.bodySmall.copyWith(color: AppColors.primary, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                child: TextButton(
+                  onPressed: () => Get.toNamed('/register'),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Belum terdaftar di Rumah Sakit? ',
+                      style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
+                      children: [
+                        TextSpan(
+                          text: 'Daftar Baru',
+                          style: AppTextStyles.bodySmall.copyWith(color: AppColors.primary, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
