@@ -11,4 +11,7 @@ abstract class Routes {
   static const settings = '/settings';
   static const queueDetail = '/queue-detail';
   static const addMedicalRecord = '/add-medical-record';
+  
+  static const drugCatalog = '/drug-catalog';
+  static const fullCalendar = '/full-calendar';
 }

@@ -19,6 +19,10 @@ import '../../features/queue_detail/bindings/queue_detail_binding.dart';
 import '../../features/queue_detail/views/queue_detail_page.dart';
 import '../../features/add_medical_record/bindings/add_medical_record_binding.dart';
 import '../../features/add_medical_record/views/add_medical_record_page.dart';
+import '../../features/drug_catalog/bindings/drug_catalog_binding.dart';
+import '../../features/drug_catalog/views/drug_catalog_page.dart';
+import '../../features/full_calendar/bindings/full_calendar_binding.dart';
+import '../../features/full_calendar/views/full_calendar_page.dart';
 
 class AppPages {
   static const initial = Routes.mainNav;
@@ -68,6 +72,16 @@ class AppPages {
       name: Routes.addMedicalRecord,
       page: () => const AddMedicalRecordPage(),
       binding: AddMedicalRecordBinding(),
+    ),
+    GetPage(
+      name: Routes.drugCatalog,
+      page: () => const DrugCatalogPage(),
+      binding: DrugCatalogBinding(),
+    ),
+    GetPage(
+      name: Routes.fullCalendar,
+      page: () => const FullCalendarPage(),
+      binding: FullCalendarBinding(),
     ),
   ];
 }
