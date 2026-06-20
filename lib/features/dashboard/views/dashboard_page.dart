@@ -32,6 +32,25 @@ class DashboardPage extends GetView<DashboardController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text('Akses Cepat', style: AppTextStyles.h3),
+                    ),
+                    const SizedBox(height: 16),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          _buildQuickAction(Icons.calculate_rounded, 'Kalkulator Medis', AppColors.primary, () => Get.toNamed('/medical-calculator')),
+                          const SizedBox(width: 12),
+                          _buildQuickAction(Icons.menu_book_rounded, 'Katalog Obat', AppColors.secondary, () => Get.toNamed('/drug-catalog')),
+                          const SizedBox(width: 12),
+                          _buildQuickAction(Icons.people_alt_rounded, 'Tim & Staf', const Color(0xFFF5A623), () => Get.toNamed('/staff-management')),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,6 +125,36 @@ class DashboardPage extends GetView<DashboardController> {
           ],
         );
       }),
+    );
+  }
+
+  Widget _buildQuickAction(IconData icon, String label, Color color, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: 100,
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: color, size: 24),
+            ),
+            const SizedBox(height: 8),
+            Text(label, style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.w600), textAlign: TextAlign.center),
+          ],
+        ),
+      ),
     );
   }
 }

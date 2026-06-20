@@ -26,6 +26,10 @@ import '../../features/full_calendar/views/full_calendar_page.dart';
 import '../../features/auth/bindings/auth_binding.dart';
 import '../../features/auth/views/splash_page.dart';
 import '../../features/auth/views/login_page.dart';
+import '../../features/medical_calculator/bindings/medical_calculator_binding.dart';
+import '../../features/medical_calculator/views/medical_calculator_page.dart';
+import '../../features/staff_management/bindings/staff_management_binding.dart';
+import '../../features/staff_management/views/staff_management_page.dart';
 
 class AppPages {
   static const initial = Routes.splash;
@@ -95,6 +99,16 @@ class AppPages {
       name: Routes.fullCalendar,
       page: () => const FullCalendarPage(),
       binding: FullCalendarBinding(),
+    ),
+    GetPage(
+      name: Routes.medicalCalculator,
+      page: () => const MedicalCalculatorPage(),
+      binding: MedicalCalculatorBinding(),
+    ),
+    GetPage(
+      name: Routes.staffManagement,
+      page: () => const StaffManagementPage(),
+      binding: StaffManagementBinding(),
     ),
   ];
 }
