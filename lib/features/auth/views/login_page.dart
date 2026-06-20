@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                         elevation: 4,
                       ),
-                      child: Text('Masuk dengan FaceID / Sidik Jari', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 16)),
+                      child: Text('Masuk', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 18)),
                     ),
                   ],
                 ),
