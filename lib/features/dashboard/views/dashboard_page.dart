@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../app/routes/app_routes.dart';
 import '../controllers/dashboard_controller.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/queue_list_item.dart';
@@ -86,7 +87,7 @@ class DashboardPage extends GetView<DashboardController> {
                           const SizedBox(width: 12),
                           _buildQuickAction(Icons.people_alt_rounded, 'Tim &\nStaf', const Color(0xFFF5A623), () => Get.toNamed('/staff-management')),
                           const SizedBox(width: 12),
-                          _buildQuickAction(Icons.language_rounded, 'Kamus\nICD-10', const Color(0xFF9B51E0), () => Get.toNamed('/icd10-dictionary')),
+                          _buildQuickAction(Icons.language_rounded, 'Kamus\nICD-10', const Color(0xFF9B51E0), () => Get.toNamed(Routes.icd10Dictionary)),
                         ],
                       ),
                     ),
