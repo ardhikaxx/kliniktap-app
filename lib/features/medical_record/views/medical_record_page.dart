@@ -13,94 +13,69 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 32, 20, 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Rekam Medis', style: AppTextStyles.h1.copyWith(fontSize: 32, color: AppColors.textPrimary)),
-                      const SizedBox(height: 4),
-                      Text('Kelola dan cari data pasien', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
-                    ],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
+      body: Stack(
+        children: [
+          // Content Scrollable
+          Obx(() {
+            return ListView(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top + 90, 
+                bottom: 32,
+              ),
+              children: [
+                // Search Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
                     decoration: BoxDecoration(
-                      color: AppColors.primarySurface,
-                      shape: BoxShape.circle,
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.04),
+                          blurRadius: 20,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    child: const Icon(Icons.folder_shared_rounded, color: AppColors.primary, size: 28),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.04),
-                      blurRadius: 20,
-                      offset: const Offset(0, 4),
+                    child: TextField(
+                      onChanged: controller.search,
+                      style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+                      decoration: InputDecoration(
+                        hintText: 'Cari nama atau ID pasien...',
+                        hintStyle: AppTextStyles.body.copyWith(color: AppColors.textHint),
+                        prefixIcon: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Icon(Icons.search_rounded, color: AppColors.primary, size: 24),
+                        ),
+                        prefixIconConstraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                      ),
                     ),
-                  ],
-                ),
-                child: TextField(
-                  onChanged: controller.search,
-                  style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
-                  decoration: InputDecoration(
-                    hintText: 'Cari nama atau ID pasien...',
-                    hintStyle: AppTextStyles.body.copyWith(color: AppColors.textHint),
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Icon(Icons.search_rounded, color: AppColors.primary, size: 24),
-                    ),
-                    prefixIconConstraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 32),
-            Expanded(
-              child: Obx(() {
-                if (controller.isLoading.value) {
-                  return const AppLoadingIndicator();
-                }
+                const SizedBox(height: 32),
                 
-                if (controller.filteredRecords.isEmpty) {
-                  return Center(
+                // Content States
+                if (controller.isLoading.value)
+                  const AppLoadingIndicator()
+                else if (controller.filteredRecords.isEmpty)
+                  Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const SizedBox(height: 40),
                         Icon(Icons.search_off_rounded, size: 64, color: AppColors.textHint.withValues(alpha: 0.5)),
                         const SizedBox(height: 16),
                         Text('Pasien tidak ditemukan', style: AppTextStyles.body.copyWith(color: AppColors.textHint)),
                       ],
                     ),
-                  );
-                }
-
-                return ListView.builder(
-                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 32),
-                  itemCount: controller.filteredRecords.length,
-                  itemBuilder: (context, index) {
-                    final patient = controller.filteredRecords[index];
+                  )
+                else
+                  ...controller.filteredRecords.map((patient) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.only(bottom: 16, left: 20, right: 20),
                       child: InkWell(
                         onTap: () => Get.toNamed('/medical-record-detail', arguments: patient),
                         borderRadius: BorderRadius.circular(20),
@@ -178,12 +153,58 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
                         ),
                       ),
                     );
-                  },
-                );
-              }),
+                  }).toList(),
+              ],
+            );
+          }),
+          
+          // Floating Pill Header
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Container(
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.95),
+                    borderRadius: BorderRadius.circular(32),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withValues(alpha: 0.08),
+                        blurRadius: 24,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 24),
+                      Expanded(
+                        child: Text(
+                          'Rekam Medis (EMR)',
+                          style: AppTextStyles.h2.copyWith(fontSize: 18, color: AppColors.textPrimary),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: AppColors.primarySurface,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.folder_shared_rounded, color: AppColors.primary, size: 20),
+                      ),
+                      const SizedBox(width: 12),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
