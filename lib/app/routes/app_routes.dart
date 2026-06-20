@@ -20,4 +20,5 @@ abstract class Routes {
   
   static const medicalCalculator = '/medical-calculator';
   static const staffManagement = '/staff-management';
+  static const icd10Dictionary = '/icd10-dictionary';
 }

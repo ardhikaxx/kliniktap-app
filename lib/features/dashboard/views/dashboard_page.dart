@@ -85,6 +85,8 @@ class DashboardPage extends GetView<DashboardController> {
                           _buildQuickAction(Icons.menu_book_rounded, 'Katalog\nObat', AppColors.secondary, () => Get.toNamed('/drug-catalog')),
                           const SizedBox(width: 12),
                           _buildQuickAction(Icons.people_alt_rounded, 'Tim &\nStaf', const Color(0xFFF5A623), () => Get.toNamed('/staff-management')),
+                          const SizedBox(width: 12),
+                          _buildQuickAction(Icons.language_rounded, 'Kamus\nICD-10', const Color(0xFF9B51E0), () => Get.toNamed('/icd10-dictionary')),
                         ],
                       ),
                     ),

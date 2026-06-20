@@ -30,6 +30,8 @@ import '../../features/medical_calculator/bindings/medical_calculator_binding.da
 import '../../features/medical_calculator/views/medical_calculator_page.dart';
 import '../../features/staff_management/bindings/staff_management_binding.dart';
 import '../../features/staff_management/views/staff_management_page.dart';
+import '../../features/icd10_dictionary/bindings/icd10_dictionary_binding.dart';
+import '../../features/icd10_dictionary/views/icd10_dictionary_page.dart';
 
 class AppPages {
   static const initial = Routes.splash;
@@ -109,6 +111,11 @@ class AppPages {
       name: Routes.staffManagement,
       page: () => const StaffManagementPage(),
       binding: StaffManagementBinding(),
+    ),
+    GetPage(
+      name: Routes.icd10Dictionary,
+      page: () => const Icd10DictionaryPage(),
+      binding: Icd10DictionaryBinding(),
     ),
   ];
 }
