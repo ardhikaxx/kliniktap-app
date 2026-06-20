@@ -70,7 +70,7 @@ class DashboardPage extends GetView<DashboardController> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 16),
                           Text('Akses Cepat', style: AppTextStyles.h3),
                         ],
                       ),
@@ -91,7 +91,7 @@ class DashboardPage extends GetView<DashboardController> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 16),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
