@@ -56,15 +56,22 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
                 itemCount: controller.filteredRecords.length,
                 itemBuilder: (context, index) {
                   final patient = controller.filteredRecords[index];
-                  return Card(
-                    elevation: 0,
-                    margin: const EdgeInsets.only(bottom: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: const BorderSide(color: AppColors.border),
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: AppColors.border.withValues(alpha: 0.6)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.03),
+                          blurRadius: 16,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(20),
                       onTap: () {
                         Get.toNamed('/medical-record-detail', arguments: patient);
                       },
@@ -72,22 +79,36 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           children: [
-                            AppAvatar(imageUrl: patient.avatarUrl, size: 56),
+                            Container(
+                              padding: const EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 2),
+                              ),
+                              child: AppAvatar(imageUrl: patient.avatarUrl, size: 52),
+                            ),
                             const SizedBox(width: 16),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(patient.patientName, style: AppTextStyles.h3),
+                                  Text(patient.patientName, style: AppTextStyles.h3.copyWith(fontSize: 16)),
                                   const SizedBox(height: 4),
                                   Text(
-                                    'ID: ${patient.id} • Kunjungan terakhir: Hari ini',
+                                    'ID: ${patient.id} • Kunjungan: Hari ini',
                                     style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
                                   ),
                                 ],
                               ),
                             ),
-                            const Icon(Icons.chevron_right, color: AppColors.primary),
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: AppColors.primarySurface,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(Icons.arrow_forward_ios, color: AppColors.primary, size: 14),
+                            ),
                           ],
                         ),
                       ),
