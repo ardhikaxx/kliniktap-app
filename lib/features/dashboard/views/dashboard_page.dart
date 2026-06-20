@@ -22,12 +22,15 @@ class DashboardPage extends GetView<DashboardController> {
         final doctor = controller.doctor.value;
         if (doctor == null) return const Center(child: Text('Data tidak ditemukan'));
 
-        return CustomScrollView(
-          slivers: [
-            DashboardSliverAppBar(doctor: doctor),
-            SliverToBoxAdapter(
+        return Stack(
+          children: [
+            SingleChildScrollView(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).padding.top + 100, // Space for header
+                bottom: 120, // Space for bottom nav
+              ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 24, bottom: 12),
+                padding: const EdgeInsets.only(top: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -106,19 +109,99 @@ class DashboardPage extends GetView<DashboardController> {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.queueList.length,
+                      itemBuilder: (context, index) {
+                        return QueueListItem(patient: controller.queueList[index]);
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 120),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final patient = controller.queueList[index];
-                    return QueueListItem(patient: patient);
-                  },
-                  childCount: controller.queueList.length,
+            
+            // Floating Pill Header
+            Positioned(
+              top: 0, left: 0, right: 0,
+              child: SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: Container(
+                    height: 72,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.95),
+                      borderRadius: BorderRadius.circular(36),
+                      boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.08), blurRadius: 24, offset: const Offset(0, 8))],
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: AppColors.primary.withValues(alpha: 0.3), width: 2),
+                          ),
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundImage: NetworkImage(doctor.avatarUrl),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Selamat Pagi,',
+                                style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                'dr. ${doctor.name}',
+                                style: AppTextStyles.subtitle.copyWith(color: AppColors.textPrimary),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Get.toNamed('/notifications'),
+                          child: Container(
+                            width: 44, height: 44,
+                            decoration: BoxDecoration(
+                              color: AppColors.background,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: AppColors.border.withValues(alpha: 0.6)),
+                            ),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                const Icon(Icons.notifications_outlined, color: AppColors.textPrimary, size: 22),
+                                Positioned(
+                                  right: 10,
+                                  top: 10,
+                                  child: Container(
+                                    width: 8, height: 8,
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.error,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
