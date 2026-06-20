@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kliniktap/app/theme/app_text_styles.dart';
 import '../controllers/main_nav_controller.dart';
 import '../../dashboard/views/dashboard_page.dart';
 import '../../../app/theme/app_colors.dart';
