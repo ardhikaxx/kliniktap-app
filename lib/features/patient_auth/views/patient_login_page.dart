@@ -84,7 +84,7 @@ class PatientLoginPage extends StatelessWidget {
                     const SizedBox(height: 24),
                     
                     ElevatedButton(
-                      onPressed: () => Get.offAllNamed('/patient-dashboard'),
+                      onPressed: () => Get.offAllNamed('/main'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         minimumSize: const Size.fromHeight(60),

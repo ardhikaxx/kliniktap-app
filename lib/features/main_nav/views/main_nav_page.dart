@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kliniktap/app/theme/app_text_styles.dart';
 import '../controllers/main_nav_controller.dart';
-import '../../dashboard/views/dashboard_page.dart';
 import '../../../app/theme/app_colors.dart';
-import '../../medical_record/views/medical_record_page.dart';
-import '../../schedule_profile/views/schedule_profile_page.dart';
-import '../../full_calendar/views/full_calendar_page.dart';
-import '../../bed_management/views/bed_management_page.dart';
+
+// Patient Pages
+import '../../patient_dashboard/views/patient_dashboard_page.dart';
+import '../../patient_polyclinic/views/polyclinic_page.dart';
+import '../../patient_medical_record/views/patient_medical_record_page.dart';
+import '../../patient_profile/views/patient_profile_page.dart';
 
 class MainNavPage extends GetView<MainNavController> {
   const MainNavPage({super.key});
@@ -15,22 +16,26 @@ class MainNavPage extends GetView<MainNavController> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const DashboardPage(),
-      const FullCalendarPage(),
-      const BedManagementPage(),
-      const MedicalRecordPage(),
-      const ScheduleProfilePage(),
+      const PatientDashboardPage(),
+      const PolyclinicPage(),
+      const PatientMedicalRecordPage(),
+      const PatientProfilePage(),
     ];
 
     return Scaffold(
       extendBody: true, // Ensures content goes behind the floating nav
       backgroundColor: AppColors.background,
-      body: Obx(() => IndexedStack(
-        index: controller.currentIndex.value,
-        children: pages,
-      )),
-      bottomNavigationBar: Obx(
-        () => SafeArea(
+      body: Obx(() {
+        // Ensure index doesn't go out of bounds since we reduced to 4 tabs
+        final index = controller.currentIndex.value >= pages.length ? 0 : controller.currentIndex.value;
+        return IndexedStack(
+          index: index,
+          children: pages,
+        );
+      }),
+      bottomNavigationBar: Obx(() {
+        final index = controller.currentIndex.value >= pages.length ? 0 : controller.currentIndex.value;
+        return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
             child: Container(
@@ -50,24 +55,23 @@ class MainNavPage extends GetView<MainNavController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildNavItem(0, Icons.dashboard_rounded, 'Dasbor'),
-                  _buildNavItem(1, Icons.calendar_month_rounded, 'Jadwal'),
-                  _buildNavItem(2, Icons.bed_rounded, 'Bangsal'),
-                  _buildNavItem(3, Icons.folder_shared_rounded, 'EMR'),
-                  _buildNavItem(4, Icons.person_rounded, 'Profil'),
+                  _buildNavItem(index, 0, Icons.home_rounded, 'Dasbor'),
+                  _buildNavItem(index, 1, Icons.business_rounded, 'Poli'),
+                  _buildNavItem(index, 2, Icons.monitor_heart_rounded, 'PHR'),
+                  _buildNavItem(index, 3, Icons.person_rounded, 'Profil'),
                 ],
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
-  Widget _buildNavItem(int index, IconData icon, String label) {
-    final isSelected = controller.currentIndex.value == index;
+  Widget _buildNavItem(int currentIndex, int itemIndex, IconData icon, String label) {
+    final isSelected = currentIndex == itemIndex;
     return GestureDetector(
-      onTap: () => controller.changeTab(index),
+      onTap: () => controller.changeTab(itemIndex),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
