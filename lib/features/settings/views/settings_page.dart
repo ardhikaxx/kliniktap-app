@@ -4,6 +4,14 @@ import '../controllers/settings_controller.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_text_styles.dart';
 
+// Import subpages
+import 'subpages/language_page.dart';
+import 'subpages/change_password_page.dart';
+import 'subpages/two_factor_auth_page.dart';
+import 'subpages/help_center_page.dart';
+import 'subpages/privacy_policy_page.dart';
+import 'subpages/about_app_page.dart';
+
 class SettingsPage extends GetView<SettingsController> {
   const SettingsPage({super.key});
 
@@ -24,7 +32,7 @@ class SettingsPage extends GetView<SettingsController> {
                   'Preferensi Aplikasi',
                   [
                     _buildSettingsItem(Icons.dark_mode_rounded, 'Mode Gelap (Dark Mode)', isSwitch: true, value: false),
-                    _buildSettingsItem(Icons.language_rounded, 'Bahasa', valueText: 'Indonesia'),
+                    _buildSettingsItem(Icons.language_rounded, 'Bahasa', valueText: 'Indonesia', onTap: () => Get.to(() => const LanguagePage())),
                     _buildSettingsItem(Icons.notifications_active_rounded, 'Notifikasi Push', isSwitch: true, value: true),
                   ],
                 ),
@@ -32,8 +40,8 @@ class SettingsPage extends GetView<SettingsController> {
                 _buildSettingsGroup(
                   'Akun & Keamanan',
                   [
-                    _buildSettingsItem(Icons.lock_rounded, 'Ubah Kata Sandi'),
-                    _buildSettingsItem(Icons.security_rounded, 'Autentikasi Dua Langkah (2FA)'),
+                    _buildSettingsItem(Icons.lock_rounded, 'Ubah Kata Sandi', onTap: () => Get.to(() => const ChangePasswordPage())),
+                    _buildSettingsItem(Icons.security_rounded, 'Autentikasi Dua Langkah (2FA)', onTap: () => Get.to(() => const TwoFactorAuthPage())),
                     _buildSettingsItem(Icons.fingerprint_rounded, 'Gunakan Biometrik', isSwitch: true, value: true),
                   ],
                 ),
@@ -41,10 +49,49 @@ class SettingsPage extends GetView<SettingsController> {
                 _buildSettingsGroup(
                   'Bantuan & Informasi',
                   [
-                    _buildSettingsItem(Icons.help_center_rounded, 'Pusat Bantuan'),
-                    _buildSettingsItem(Icons.privacy_tip_rounded, 'Kebijakan Privasi'),
-                    _buildSettingsItem(Icons.info_rounded, 'Tentang Aplikasi', valueText: 'v1.0.0'),
+                    _buildSettingsItem(Icons.help_center_rounded, 'Pusat Bantuan', onTap: () => Get.to(() => const HelpCenterPage())),
+                    _buildSettingsItem(Icons.privacy_tip_rounded, 'Kebijakan Privasi', onTap: () => Get.to(() => const PrivacyPolicyPage())),
+                    _buildSettingsItem(Icons.info_rounded, 'Tentang Aplikasi', valueText: 'v1.0.0', onTap: () => Get.to(() => const AboutAppPage())),
                   ],
+                ),
+                const SizedBox(height: 40),
+                // Logout button
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.defaultDialog(
+                        title: 'Keluar',
+                        titleStyle: AppTextStyles.h3,
+                        middleText: 'Apakah Anda yakin ingin keluar dari akun?',
+                        middleTextStyle: AppTextStyles.body,
+                        radius: 16,
+                        textConfirm: 'Keluar',
+                        textCancel: 'Batal',
+                        confirmTextColor: Colors.white,
+                        cancelTextColor: AppColors.primary,
+                        buttonColor: AppColors.error,
+                        onConfirm: () {
+                          // Logic kelur
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.error.withValues(alpha: 0.1),
+                      foregroundColor: AppColors.error,
+                      minimumSize: const Size.fromHeight(56),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.logout_rounded, size: 20),
+                        const SizedBox(width: 8),
+                        Text('Keluar Akun', style: AppTextStyles.button.copyWith(color: AppColors.error)),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -145,40 +192,43 @@ class SettingsPage extends GetView<SettingsController> {
     );
   }
 
-  Widget _buildSettingsItem(IconData icon, String title, {bool isSwitch = false, bool value = false, String? valueText}) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppColors.primarySurface,
-              borderRadius: BorderRadius.circular(10),
+  Widget _buildSettingsItem(IconData icon, String title, {bool isSwitch = false, bool value = false, String? valueText, VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap ?? (isSwitch ? () {} : null),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppColors.primarySurface,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(icon, color: AppColors.primary, size: 20),
             ),
-            child: Icon(icon, color: AppColors.primary, size: 20),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(title, style: AppTextStyles.subtitle.copyWith(fontSize: 15)),
-          ),
-          if (isSwitch)
-            Switch(
-              value: value,
-              onChanged: (v) {},
-              activeColor: AppColors.primary,
-            )
-          else if (valueText != null)
-            Row(
-              children: [
-                Text(valueText, style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
-                const SizedBox(width: 4),
-                const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.textHint),
-              ],
-            )
-          else
-            const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.textHint),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(title, style: AppTextStyles.subtitle.copyWith(fontSize: 15)),
+            ),
+            if (isSwitch)
+              Switch(
+                value: value,
+                onChanged: (v) {},
+                activeColor: AppColors.primary,
+              )
+            else if (valueText != null)
+              Row(
+                children: [
+                  Text(valueText, style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
+                  const SizedBox(width: 4),
+                  const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.textHint),
+                ],
+              )
+            else
+              const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: AppColors.textHint),
+          ],
+        ),
       ),
     );
   }
