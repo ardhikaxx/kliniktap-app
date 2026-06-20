@@ -31,42 +31,65 @@ class DashboardPage extends GetView<DashboardController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 100,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text('Ikhtisar Hari Ini', style: AppTextStyles.h3),
+                          const SizedBox(height: 16),
                           StatCard(
-                            label: 'Antrean Hari Ini',
+                            label: 'Antrean Pasien',
                             value: doctor.stats.queueToday.toString(),
                             borderColor: AppColors.primary,
+                            icon: Icons.people_alt_rounded,
                           ),
-                          StatCard(
-                            label: 'Resep Diterbitkan',
-                            value: doctor.stats.prescriptionsIssued.toString(),
-                            borderColor: AppColors.secondary,
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: StatCard(
+                                  label: 'Resep Diterbitkan',
+                                  value: doctor.stats.prescriptionsIssued.toString(),
+                                  borderColor: AppColors.secondary,
+                                  icon: Icons.receipt_long_rounded,
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: StatCard(
+                                  label: 'Tugas Selesai',
+                                  value: doctor.stats.tasksCompleted.toString(),
+                                  borderColor: AppColors.success,
+                                  icon: Icons.task_alt_rounded,
+                                ),
+                              ),
+                            ],
                           ),
-                          StatCard(
-                            label: 'Tugas Selesai',
-                            value: doctor.stats.tasksCompleted.toString(),
-                            borderColor: AppColors.accent,
+                          const SizedBox(height: 32),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Daftar Antrean', style: AppTextStyles.h3),
+                              Text(
+                                'Lihat Semua',
+                                style: AppTextStyles.bodySmall.copyWith(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
                           ),
+                          const SizedBox(height: 16),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text('Daftar Antrean', style: AppTextStyles.h3),
-                    ),
-                    const SizedBox(height: 16),
                   ],
                 ),
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
