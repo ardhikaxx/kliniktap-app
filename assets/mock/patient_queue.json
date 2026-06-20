@@ -1,0 +1,23 @@
+[
+  {
+    "id": "Q-001",
+    "patient_name": "Rina Wijaya",
+    "avatar_url": "https://i.pravatar.cc/150?img=5",
+    "appointment_time": "09:00",
+    "priority": "high"
+  },
+  {
+    "id": "Q-002",
+    "patient_name": "Agus Mulyadi",
+    "avatar_url": "https://i.pravatar.cc/150?img=8",
+    "appointment_time": "09:30",
+    "priority": "medium"
+  },
+  {
+    "id": "Q-003",
+    "patient_name": "Siti Aminah",
+    "avatar_url": "https://i.pravatar.cc/150?img=9",
+    "appointment_time": "10:00",
+    "priority": "low"
+  }
+]

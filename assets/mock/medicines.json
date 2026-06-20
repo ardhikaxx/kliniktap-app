@@ -1,0 +1,26 @@
+[
+  {
+    "id": "M-001",
+    "name": "Paracetamol 500mg",
+    "category": "Analgesik",
+    "common_dosage": "1 tablet, 3x sehari"
+  },
+  {
+    "id": "M-002",
+    "name": "Amoxicillin 500mg",
+    "category": "Antibiotik",
+    "common_dosage": "1 kapsul, 3x sehari"
+  },
+  {
+    "id": "M-003",
+    "name": "Cetirizine 10mg",
+    "category": "Antihistamin",
+    "common_dosage": "1 tablet, 1x sehari"
+  },
+  {
+    "id": "M-004",
+    "name": "Ibuprofen 400mg",
+    "category": "Obat Anti Inflamasi",
+    "common_dosage": "1 tablet, 3x sehari"
+  }
+]

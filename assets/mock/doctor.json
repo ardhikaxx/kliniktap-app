@@ -1,0 +1,12 @@
+{
+  "id": "DR-101",
+  "name": "Budi Santoso",
+  "specialty": "Dokter Umum",
+  "avatar_url": "https://i.pravatar.cc/150?img=11",
+  "is_online": true,
+  "stats": {
+    "queue_today": 12,
+    "prescriptions_issued": 8,
+    "tasks_completed": 10
+  }
+}

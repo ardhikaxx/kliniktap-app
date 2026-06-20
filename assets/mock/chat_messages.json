@@ -1,0 +1,20 @@
+[
+  {
+    "id": "MSG-001",
+    "sender": "patient",
+    "message": "Halo dok, selamat pagi. Saya Rina.",
+    "time": "09:00"
+  },
+  {
+    "id": "MSG-002",
+    "sender": "doctor",
+    "message": "Selamat pagi Rina. Ada keluhan apa hari ini?",
+    "time": "09:01"
+  },
+  {
+    "id": "MSG-003",
+    "sender": "patient",
+    "message": "Kepala saya pusing dari kemarin malam, dan sedikit demam.",
+    "time": "09:02"
+  }
+]
