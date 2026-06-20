@@ -1,46 +1,16 @@
 import 'package:get/get.dart';
 import 'app_routes.dart';
-import '../../features/main_nav/bindings/main_nav_binding.dart';
-import '../../features/main_nav/views/main_nav_page.dart';
-import '../../features/dashboard/bindings/dashboard_binding.dart';
-import '../../features/dashboard/views/dashboard_page.dart';
-import '../../features/prescription/bindings/prescription_binding.dart';
-import '../../features/prescription/views/prescription_page.dart';
-import '../../features/medical_record/bindings/medical_record_detail_binding.dart';
-import '../../features/medical_record/views/medical_record_detail_page.dart';
-import '../../features/queue_list/bindings/queue_list_binding.dart';
-import '../../features/queue_list/views/queue_list_page.dart';
 
-import '../../features/notifications/bindings/notifications_binding.dart';
-import '../../features/notifications/views/notifications_page.dart';
-import '../../features/settings/bindings/settings_binding.dart';
-import '../../features/settings/views/settings_page.dart';
-import '../../features/queue_detail/bindings/queue_detail_binding.dart';
-import '../../features/queue_detail/views/queue_detail_page.dart';
-import '../../features/add_medical_record/bindings/add_medical_record_binding.dart';
-import '../../features/add_medical_record/views/add_medical_record_page.dart';
-import '../../features/drug_catalog/bindings/drug_catalog_binding.dart';
-import '../../features/drug_catalog/views/drug_catalog_page.dart';
-import '../../features/full_calendar/bindings/full_calendar_binding.dart';
-import '../../features/full_calendar/views/full_calendar_page.dart';
-import '../../features/auth/bindings/auth_binding.dart';
 import '../../features/auth/views/splash_page.dart';
 import '../../features/auth/views/login_page.dart';
-import '../../features/medical_calculator/bindings/medical_calculator_binding.dart';
-import '../../features/medical_calculator/views/medical_calculator_page.dart';
-import '../../features/staff_management/bindings/staff_management_binding.dart';
-import '../../features/staff_management/views/staff_management_page.dart';
-import '../../features/icd10_dictionary/bindings/icd10_dictionary_binding.dart';
-import '../../features/icd10_dictionary/views/icd10_dictionary_page.dart';
-import '../../features/triage_board/bindings/triage_board_binding.dart';
-import '../../features/triage_board/views/triage_board_page.dart';
-import '../../features/pain_scale/bindings/pain_scale_binding.dart';
-import '../../features/pain_scale/views/pain_scale_page.dart';
-import '../../features/medication_adherence/bindings/medication_adherence_binding.dart';
-import '../../features/medication_adherence/views/medication_adherence_page.dart';
-import '../../features/medication_adherence/views/medication_adherence_detail_page.dart';
-import '../../features/patient_auth/views/patient_login_page.dart';
+import '../../features/main_nav/views/main_nav_page.dart';
+import '../../features/main_nav/bindings/main_nav_binding.dart';
+import '../../features/auth/bindings/auth_binding.dart';
+
 import '../../features/patient_dashboard/views/patient_dashboard_page.dart';
+import '../../features/patient_polyclinic/views/polyclinic_page.dart';
+import '../../features/patient_medical_record/views/patient_medical_record_page.dart';
+import '../../features/patient_profile/views/patient_profile_page.dart';
 
 class AppPages {
   static const initial = Routes.splash;
@@ -62,96 +32,20 @@ class AppPages {
       binding: MainNavBinding(),
     ),
     GetPage(
-      name: Routes.dashboard,
-      page: () => const DashboardPage(),
-      binding: DashboardBinding(),
-    ),
-    GetPage(
-      name: Routes.prescription,
-      page: () => const PrescriptionPage(),
-      binding: PrescriptionBinding(),
-    ),
-    GetPage(
-      name: Routes.medicalRecordDetail,
-      page: () => const MedicalRecordDetailPage(),
-      binding: MedicalRecordDetailBinding(),
-    ),
-    GetPage(
-      name: Routes.queueList,
-      page: () => const QueueListPage(),
-      binding: QueueListBinding(),
-    ),
-    GetPage(
-      name: Routes.notifications,
-      page: () => const NotificationsPage(),
-      binding: NotificationsBinding(),
-    ),
-    GetPage(
-      name: Routes.settings,
-      page: () => const SettingsPage(),
-      binding: SettingsBinding(),
-    ),
-    GetPage(
-      name: Routes.queueDetail,
-      page: () => const QueueDetailPage(),
-      binding: QueueDetailBinding(),
-    ),
-    GetPage(
-      name: Routes.addMedicalRecord,
-      page: () => const AddMedicalRecordPage(),
-      binding: AddMedicalRecordBinding(),
-    ),
-    GetPage(
-      name: Routes.drugCatalog,
-      page: () => const DrugCatalogPage(),
-      binding: DrugCatalogBinding(),
-    ),
-    GetPage(
-      name: Routes.fullCalendar,
-      page: () => const FullCalendarPage(),
-      binding: FullCalendarBinding(),
-    ),
-    GetPage(
-      name: Routes.medicalCalculator,
-      page: () => const MedicalCalculatorPage(),
-      binding: MedicalCalculatorBinding(),
-    ),
-    GetPage(
-      name: Routes.staffManagement,
-      page: () => const StaffManagementPage(),
-      binding: StaffManagementBinding(),
-    ),
-    GetPage(
-      name: Routes.icd10Dictionary,
-      page: () => const Icd10DictionaryPage(),
-      binding: Icd10DictionaryBinding(),
-    ),
-    GetPage(
-      name: Routes.triageBoard,
-      page: () => const TriageBoardPage(),
-      binding: TriageBoardBinding(),
-    ),
-    GetPage(
-      name: Routes.painScale,
-      page: () => const PainScalePage(),
-      binding: PainScaleBinding(),
-    ),
-    GetPage(
-      name: Routes.medicationAdherence,
-      page: () => const MedicationAdherencePage(),
-      binding: MedicationAdherenceBinding(),
-    ),
-    GetPage(
-      name: Routes.medicationAdherenceDetail,
-      page: () => const MedicationAdherenceDetailPage(),
-    ),
-    GetPage(
-      name: Routes.patientLogin,
-      page: () => const PatientLoginPage(),
-    ),
-    GetPage(
       name: Routes.patientDashboard,
       page: () => const PatientDashboardPage(),
+    ),
+    GetPage(
+      name: Routes.patientPolyclinic,
+      page: () => const PolyclinicPage(),
+    ),
+    GetPage(
+      name: Routes.patientMedicalRecord,
+      page: () => const PatientMedicalRecordPage(),
+    ),
+    GetPage(
+      name: Routes.patientProfile,
+      page: () => const PatientProfilePage(),
     ),
   ];
 }
