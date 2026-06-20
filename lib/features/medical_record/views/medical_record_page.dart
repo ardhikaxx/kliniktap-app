@@ -13,112 +13,177 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: const Text('Rekam Medis (EMR)'),
-        elevation: 0,
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.textPrimary,
-      ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            color: AppColors.surface,
-            child: TextField(
-              onChanged: controller.search,
-              decoration: InputDecoration(
-                hintText: 'Cari nama pasien...',
-                prefixIcon: const Icon(Icons.search, color: AppColors.textHint),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: AppColors.background,
-                contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 32, 20, 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Rekam Medis', style: AppTextStyles.h1.copyWith(fontSize: 32, color: AppColors.textPrimary)),
+                      const SizedBox(height: 4),
+                      Text('Kelola dan cari data pasien', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: AppColors.primarySurface,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.folder_shared_rounded, color: AppColors.primary, size: 28),
+                  ),
+                ],
               ),
             ),
-          ),
-          Expanded(
-            child: Obx(() {
-              if (controller.isLoading.value) {
-                return const AppLoadingIndicator();
-              }
-              
-              if (controller.filteredRecords.isEmpty) {
-                return Center(
-                  child: Text('Tidak ada data pasien', style: AppTextStyles.body.copyWith(color: AppColors.textHint)),
-                );
-              }
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: controller.filteredRecords.length,
-                itemBuilder: (context, index) {
-                  final patient = controller.filteredRecords[index];
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    decoration: BoxDecoration(
-                      color: AppColors.surface,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.border.withValues(alpha: 0.6)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withValues(alpha: 0.03),
-                          blurRadius: 16,
-                          offset: const Offset(0, 4),
-                        ),
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.surface,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.04),
+                      blurRadius: 20,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  onChanged: controller.search,
+                  style: AppTextStyles.body.copyWith(color: AppColors.textPrimary),
+                  decoration: InputDecoration(
+                    hintText: 'Cari nama atau ID pasien...',
+                    hintStyle: AppTextStyles.body.copyWith(color: AppColors.textHint),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Icon(Icons.search_rounded, color: AppColors.primary, size: 24),
+                    ),
+                    prefixIconConstraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            Expanded(
+              child: Obx(() {
+                if (controller.isLoading.value) {
+                  return const AppLoadingIndicator();
+                }
+                
+                if (controller.filteredRecords.isEmpty) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search_off_rounded, size: 64, color: AppColors.textHint.withValues(alpha: 0.5)),
+                        const SizedBox(height: 16),
+                        Text('Pasien tidak ditemukan', style: AppTextStyles.body.copyWith(color: AppColors.textHint)),
                       ],
                     ),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {
-                        Get.toNamed('/medical-record-detail', arguments: patient);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 2),
+                  );
+                }
+
+                return ListView.builder(
+                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 32),
+                  itemCount: controller.filteredRecords.length,
+                  itemBuilder: (context, index) {
+                    final patient = controller.filteredRecords[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: InkWell(
+                        onTap: () => Get.toNamed('/medical-record-detail', arguments: patient),
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.primary.withValues(alpha: 0.03),
+                                blurRadius: 16,
+                                offset: const Offset(0, 4),
                               ),
-                              child: AppAvatar(imageUrl: patient.avatarUrl, size: 52),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(patient.patientName, style: AppTextStyles.h3.copyWith(fontSize: 16)),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'ID: ${patient.id} • Kunjungan: Hari ini',
-                                    style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
-                                  ),
-                                ],
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(alpha: 0.05),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: AppAvatar(imageUrl: patient.avatarUrl, size: 56),
                               ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: AppColors.primarySurface,
-                                shape: BoxShape.circle,
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      patient.patientName, 
+                                      style: AppTextStyles.h3.copyWith(fontSize: 17, color: AppColors.textPrimary)
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.background,
+                                            borderRadius: BorderRadius.circular(6),
+                                          ),
+                                          child: Text(
+                                            'ID: #${patient.id.toUpperCase()}',
+                                            style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text('•', style: TextStyle(color: AppColors.textHint)),
+                                        const SizedBox(width: 8),
+                                        Text('Kunjungan Terakhir', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child: const Icon(Icons.arrow_forward_ios, color: AppColors.primary, size: 14),
-                            ),
-                          ],
+                              Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primarySurface,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.primary, size: 16),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
-            }),
-          ),
-        ],
+                    );
+                  },
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }
