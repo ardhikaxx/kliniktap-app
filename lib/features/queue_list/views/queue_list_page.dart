@@ -16,15 +16,36 @@ class QueueListPage extends GetView<QueueListController> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textPrimary, size: 20),
-          onPressed: () => Get.back(),
+        scrolledUnderElevation: 0,
+        toolbarHeight: 80,
+        leadingWidth: 70,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+          child: InkWell(
+            onTap: () => Get.back(),
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.border.withValues(alpha: 0.6)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.03),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textPrimary, size: 18),
+            ),
+          ),
         ),
         title: Text(
           'Daftar Antrean',
-          style: AppTextStyles.h2.copyWith(fontSize: 18),
+          style: AppTextStyles.h2.copyWith(fontSize: 20, color: AppColors.textPrimary),
         ),
+        centerTitle: true,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
