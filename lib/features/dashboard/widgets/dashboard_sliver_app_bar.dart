@@ -37,17 +37,43 @@ class DashboardSliverAppBar extends StatelessWidget {
             );
           },
         ),
-        background: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [AppColors.primary, AppColors.primaryDark],
+        background: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [AppColors.primaryDark, AppColors.primaryLight],
+                ),
+              ),
             ),
-          ),
-          padding: const EdgeInsets.only(left: 16, top: 60),
-          alignment: Alignment.topLeft,
-          child: AppAvatar(imageUrl: doctor.avatarUrl, size: 56),
+            // Decorative circle
+            Positioned(
+              right: -50,
+              top: -50,
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withValues(alpha: 0.1),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 16,
+              top: 60,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withValues(alpha: 0.2),
+                ),
+                child: AppAvatar(imageUrl: doctor.avatarUrl, size: 64),
+              ),
+            ),
+          ],
         ),
       ),
       actions: [
