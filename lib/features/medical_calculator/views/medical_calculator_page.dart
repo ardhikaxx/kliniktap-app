@@ -4,6 +4,10 @@ import '../controllers/medical_calculator_controller.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_text_styles.dart';
 
+import 'subpages/bmi_calculator_page.dart';
+import 'subpages/pediatric_dosage_page.dart';
+import 'subpages/pregnancy_calculator_page.dart';
+
 class MedicalCalculatorPage extends GetView<MedicalCalculatorController> {
   const MedicalCalculatorPage({super.key});
 
@@ -33,6 +37,7 @@ class MedicalCalculatorPage extends GetView<MedicalCalculatorController> {
                   description: 'Hitung Indeks Massa Tubuh (Body Mass Index) pasien dewasa.',
                   icon: Icons.monitor_weight_rounded,
                   color: const Color(0xFF4A90E2),
+                  onTap: () => Get.to(() => const BmiCalculatorPage()),
                 ),
                 const SizedBox(height: 16),
                 
@@ -41,6 +46,7 @@ class MedicalCalculatorPage extends GetView<MedicalCalculatorController> {
                   description: 'Hitung dosis pediatrik berdasarkan berat badan (mg/kgBB).',
                   icon: Icons.child_care_rounded,
                   color: const Color(0xFF50E3C2),
+                  onTap: () => Get.to(() => const PediatricDosagePage()),
                 ),
                 const SizedBox(height: 16),
                 
@@ -49,6 +55,7 @@ class MedicalCalculatorPage extends GetView<MedicalCalculatorController> {
                   description: 'Hitung Hari Perkiraan Lahir berdasarkan HPHT (Rumus Naegele).',
                   icon: Icons.pregnant_woman_rounded,
                   color: const Color(0xFFF5A623),
+                  onTap: () => Get.to(() => const PregnancyCalculatorPage()),
                 ),
               ],
             ),
@@ -93,11 +100,9 @@ class MedicalCalculatorPage extends GetView<MedicalCalculatorController> {
     );
   }
 
-  Widget _buildCalculatorCard({required String title, required String description, required IconData icon, required Color color}) {
+  Widget _buildCalculatorCard({required String title, required String description, required IconData icon, required Color color, required VoidCallback onTap}) {
     return InkWell(
-      onTap: () {
-        Get.snackbar('Kalkulator', 'Fitur $title akan segera hadir!', snackPosition: SnackPosition.BOTTOM);
-      },
+      onTap: onTap,
       borderRadius: BorderRadius.circular(24),
       child: Container(
         padding: const EdgeInsets.all(20),
