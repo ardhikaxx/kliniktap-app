@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary
-  static const primary = Color(0xFF2563EB); // Blue 600
-  static const primaryLight = Color(0xFF3B82F6); // Blue 500
-  static const primaryDark = Color(0xFF1D4ED8); // Blue 700
-  static const primarySurface = Color(0xFFEFF6FF); // Blue 50
+  // Primary — Teal medis, identitas utama KlinikTap
+  static const primary = Color(0xFF0D7377);
+  static const primaryLight = Color(0xFF14A8AC);
+  static const primaryDark = Color(0xFF075759);
+  static const primarySurface = Color(0xFFE6F5F5);
 
   // Secondary
   static const secondary = Color(0xFF475569); // Slate 600
