@@ -32,6 +32,12 @@ import '../../features/staff_management/bindings/staff_management_binding.dart';
 import '../../features/staff_management/views/staff_management_page.dart';
 import '../../features/icd10_dictionary/bindings/icd10_dictionary_binding.dart';
 import '../../features/icd10_dictionary/views/icd10_dictionary_page.dart';
+import '../../features/triage_board/bindings/triage_board_binding.dart';
+import '../../features/triage_board/views/triage_board_page.dart';
+import '../../features/pain_scale/bindings/pain_scale_binding.dart';
+import '../../features/pain_scale/views/pain_scale_page.dart';
+import '../../features/medication_adherence/bindings/medication_adherence_binding.dart';
+import '../../features/medication_adherence/views/medication_adherence_page.dart';
 
 class AppPages {
   static const initial = Routes.splash;
@@ -116,6 +122,21 @@ class AppPages {
       name: Routes.icd10Dictionary,
       page: () => const Icd10DictionaryPage(),
       binding: Icd10DictionaryBinding(),
+    ),
+    GetPage(
+      name: Routes.triageBoard,
+      page: () => const TriageBoardPage(),
+      binding: TriageBoardBinding(),
+    ),
+    GetPage(
+      name: Routes.painScale,
+      page: () => const PainScalePage(),
+      binding: PainScaleBinding(),
+    ),
+    GetPage(
+      name: Routes.medicationAdherence,
+      page: () => const MedicationAdherencePage(),
+      binding: MedicationAdherenceBinding(),
     ),
   ];
 }
