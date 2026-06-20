@@ -1,12 +1,10 @@
-$files = git status -s | ForEach-Object { $_.Trim() }
+$files = git status -s -uall | ForEach-Object { $_.Trim() }
 
 foreach ($line in $files) {
     if ([string]::IsNullOrWhiteSpace($line)) { continue }
     # format of git status -s is "XY filename"
     # XY can be " M", "M ", "??", " D", etc.
-    # filename can have spaces, but usually separated by space from status
-    # using regex to split:
-    if ($line -match "^(.{2})\s+(.*)$") {
+    if ($line -match "^(.{1,2})\s+(.*)$") {
         $status = $matches[1]
         $file = $matches[2]
         
@@ -50,12 +48,12 @@ foreach ($line in $files) {
             $msg = "chore: hapus file tidak terpakai"
             git add $file
         } else {
-            $msg = "chore: penyesuaian sistem file $file"
+            $msg = "chore: penyesuaian sistem file"
             git add $file
         }
         
-        # Format the specific file into the commit message
-        $finalMsg = "$msg ($file)"
+        $basename = Split-Path $file -Leaf
+        $finalMsg = "$msg ($basename)"
         
         git commit -m "$finalMsg"
     }
