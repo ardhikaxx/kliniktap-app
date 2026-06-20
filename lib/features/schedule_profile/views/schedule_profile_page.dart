@@ -142,17 +142,32 @@ class ScheduleProfilePage extends GetView<ScheduleProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: AppColors.primarySurface,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(Icons.calendar_month_rounded, color: AppColors.primary, size: 18),
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primarySurface,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(Icons.calendar_month_rounded, color: AppColors.primary, size: 18),
+                                ),
+                                const SizedBox(width: 12),
+                                Text('Jadwal Praktik', style: AppTextStyles.h3),
+                              ],
                             ),
-                            const SizedBox(width: 12),
-                            Text('Jadwal Praktik', style: AppTextStyles.h3),
+                            GestureDetector(
+                              onTap: () => Get.toNamed('/full-calendar'),
+                              child: Text(
+                                'Lihat Semua',
+                                style: AppTextStyles.bodySmall.copyWith(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 24),
