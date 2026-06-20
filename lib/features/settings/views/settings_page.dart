@@ -215,7 +215,7 @@ class SettingsPage extends GetView<SettingsController> {
               Switch(
                 value: value,
                 onChanged: (v) {},
-                activeColor: AppColors.primary,
+                activeThumbColor: AppColors.primary,
               )
             else if (valueText != null)
               Row(

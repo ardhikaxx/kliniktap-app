@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
-import '../widgets/dashboard_sliver_app_bar.dart';
 import '../widgets/stat_card.dart';
 import '../widgets/queue_list_item.dart';
 import '../../../shared/widgets/app_loading_indicator.dart';
