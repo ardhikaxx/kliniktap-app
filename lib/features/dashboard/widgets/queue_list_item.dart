@@ -58,7 +58,7 @@ class QueueListItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'ID Pasien: #${patient.id.substring(0, 6).toUpperCase()}',
+                      'ID Pasien: #${patient.id.toUpperCase()}',
                       style: AppTextStyles.bodySmall.copyWith(color: AppColors.textHint, fontWeight: FontWeight.w500),
                     ),
                   ],
