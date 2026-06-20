@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import '../controllers/queue_list_controller.dart';
-import '../../dashboard/repositories/dashboard_repository.dart';
+import '../../../data/repositories/dashboard_repository.dart';
 
 class QueueListBinding extends Bindings {
   @override

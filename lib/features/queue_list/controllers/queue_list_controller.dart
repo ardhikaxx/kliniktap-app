@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../dashboard/repositories/dashboard_repository.dart';
+import '../../../data/repositories/dashboard_repository.dart';
 import '../../../data/models/patient_queue_model.dart';
 
 class QueueListController extends GetxController {
@@ -19,7 +19,7 @@ class QueueListController extends GetxController {
   void fetchQueueList() async {
     isLoading.value = true;
     try {
-      final list = await repository.getQueueList();
+      final list = await repository.getPatientQueue();
       queueList.assignAll(list);
     } finally {
       isLoading.value = false;
