@@ -14,4 +14,7 @@ abstract class Routes {
   
   static const drugCatalog = '/drug-catalog';
   static const fullCalendar = '/full-calendar';
+  
+  static const splash = '/splash';
+  static const login = '/login';
 }

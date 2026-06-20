@@ -23,11 +23,24 @@ import '../../features/drug_catalog/bindings/drug_catalog_binding.dart';
 import '../../features/drug_catalog/views/drug_catalog_page.dart';
 import '../../features/full_calendar/bindings/full_calendar_binding.dart';
 import '../../features/full_calendar/views/full_calendar_page.dart';
+import '../../features/auth/bindings/auth_binding.dart';
+import '../../features/auth/views/splash_page.dart';
+import '../../features/auth/views/login_page.dart';
 
 class AppPages {
-  static const initial = Routes.mainNav;
+  static const initial = Routes.splash;
 
   static final routes = [
+    GetPage(
+      name: Routes.splash,
+      page: () => const SplashPage(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: Routes.login,
+      page: () => const LoginPage(),
+      binding: AuthBinding(),
+    ),
     GetPage(
       name: Routes.mainNav,
       page: () => const MainNavPage(),

@@ -32,6 +32,5 @@ class ScheduleProfileController extends GetxController {
   }
 
   void logout() {
-    Get.snackbar('Logout', 'Anda telah keluar dari sesi ini.');
   }
 }

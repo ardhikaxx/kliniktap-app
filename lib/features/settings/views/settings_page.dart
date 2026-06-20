@@ -72,7 +72,7 @@ class SettingsPage extends GetView<SettingsController> {
                         cancelTextColor: AppColors.primary,
                         buttonColor: AppColors.error,
                         onConfirm: () {
-                          // Logic kelur
+                          Get.offAllNamed('/login');
                         },
                       );
                     },
