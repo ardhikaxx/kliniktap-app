@@ -21,12 +21,17 @@ class StatCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border(left: BorderSide(color: borderColor, width: 4)),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 16,
+            color: borderColor.withValues(alpha: 0.15),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.03),
+            blurRadius: 10,
             offset: const Offset(0, 4),
           ),
         ],
@@ -39,9 +44,9 @@ class StatCard extends StatelessWidget {
           Text(
             value,
             style: AppTextStyles.h1.copyWith(
-              fontSize: 28,
+              fontSize: 32,
               fontWeight: FontWeight.w800,
-              color: AppColors.textPrimary,
+              color: borderColor,
             ),
           ),
           const SizedBox(height: 4),
