@@ -15,7 +15,7 @@ class PolyclinicPage extends StatelessWidget {
           // Content
           SingleChildScrollView(
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 90,
+              top: MediaQuery.of(context).padding.top + 110,
               bottom: 100,
               left: 16,
               right: 16,

@@ -14,7 +14,7 @@ class AllServicesPage extends StatelessWidget {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 80, bottom: 24, left: 20, right: 20),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 110, bottom: 24, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

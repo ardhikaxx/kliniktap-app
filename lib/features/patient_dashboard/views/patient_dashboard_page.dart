@@ -44,7 +44,7 @@ class PatientDashboardPage extends StatelessWidget {
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 90,
+              top: MediaQuery.of(context).padding.top + 110,
               bottom: 120, // Extra space for nav bar
               left: 20,
               right: 20,
