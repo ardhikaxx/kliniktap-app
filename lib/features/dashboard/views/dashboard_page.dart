@@ -41,8 +41,9 @@ class DashboardPage extends GetView<DashboardController> {
                           StatCard(
                             label: 'Antrean Pasien',
                             value: doctor.stats.queueToday.toString(),
-                            borderColor: AppColors.primary,
+                            color: AppColors.primary,
                             icon: Icons.people_alt_rounded,
+                            isPrimary: true,
                           ),
                           const SizedBox(height: 16),
                           Row(
@@ -51,7 +52,7 @@ class DashboardPage extends GetView<DashboardController> {
                                 child: StatCard(
                                   label: 'Resep Diterbitkan',
                                   value: doctor.stats.prescriptionsIssued.toString(),
-                                  borderColor: AppColors.secondary,
+                                  color: AppColors.secondary,
                                   icon: Icons.receipt_long_rounded,
                                 ),
                               ),
@@ -60,7 +61,7 @@ class DashboardPage extends GetView<DashboardController> {
                                 child: StatCard(
                                   label: 'Tugas Selesai',
                                   value: doctor.stats.tasksCompleted.toString(),
-                                  borderColor: AppColors.success,
+                                  color: AppColors.success,
                                   icon: Icons.task_alt_rounded,
                                 ),
                               ),
