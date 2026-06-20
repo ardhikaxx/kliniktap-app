@@ -254,7 +254,7 @@ class ScheduleProfilePage extends GetView<ScheduleProfileController> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () => Get.toNamed('/settings'),
                         borderRadius: BorderRadius.circular(24),
                         child: Container(
                           width: 48,

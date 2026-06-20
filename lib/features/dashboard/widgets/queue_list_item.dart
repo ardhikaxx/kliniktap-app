@@ -99,7 +99,7 @@ class QueueListItem extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed(Routes.prescription, arguments: patient);
+                  Get.toNamed(Routes.queueDetail, arguments: patient);
                 },
                 borderRadius: BorderRadius.circular(14),
                 child: Container(
@@ -117,9 +117,9 @@ class QueueListItem extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.edit_document, color: Colors.white, size: 16),
+                      const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 16),
                       const SizedBox(width: 8),
-                      Text('Resep', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 14)),
+                      Text('Periksa', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 14)),
                     ],
                   ),
                 ),

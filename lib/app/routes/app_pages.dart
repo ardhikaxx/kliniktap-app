@@ -11,6 +11,15 @@ import '../../features/medical_record/views/medical_record_detail_page.dart';
 import '../../features/queue_list/bindings/queue_list_binding.dart';
 import '../../features/queue_list/views/queue_list_page.dart';
 
+import '../../features/notifications/bindings/notifications_binding.dart';
+import '../../features/notifications/views/notifications_page.dart';
+import '../../features/settings/bindings/settings_binding.dart';
+import '../../features/settings/views/settings_page.dart';
+import '../../features/queue_detail/bindings/queue_detail_binding.dart';
+import '../../features/queue_detail/views/queue_detail_page.dart';
+import '../../features/add_medical_record/bindings/add_medical_record_binding.dart';
+import '../../features/add_medical_record/views/add_medical_record_page.dart';
+
 class AppPages {
   static const initial = Routes.mainNav;
 
@@ -39,6 +48,26 @@ class AppPages {
       name: Routes.queueList,
       page: () => const QueueListPage(),
       binding: QueueListBinding(),
+    ),
+    GetPage(
+      name: Routes.notifications,
+      page: () => const NotificationsPage(),
+      binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: Routes.settings,
+      page: () => const SettingsPage(),
+      binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: Routes.queueDetail,
+      page: () => const QueueDetailPage(),
+      binding: QueueDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.addMedicalRecord,
+      page: () => const AddMedicalRecordPage(),
+      binding: AddMedicalRecordBinding(),
     ),
   ];
 }
