@@ -184,6 +184,30 @@ class LoginPage extends GetView<AuthController> {
                       ],
                     ),
                   ),
+                  
+                  const SizedBox(height: 32),
+                  
+                  // Patient Portal Redirect
+                  Center(
+                    child: Column(
+                      children: [
+                        Text('Bukan Tenaga Medis?', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary)),
+                        const SizedBox(height: 12),
+                        OutlinedButton.icon(
+                          onPressed: () => Get.toNamed('/patient-login'),
+                          icon: const Icon(Icons.person_outline_rounded),
+                          label: const Text('Akses Portal Pasien Umum'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                            side: const BorderSide(color: AppColors.primary, width: 2),
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40),
                 ],
               ),
             ),
