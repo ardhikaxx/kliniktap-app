@@ -38,6 +38,7 @@ import '../../features/pain_scale/bindings/pain_scale_binding.dart';
 import '../../features/pain_scale/views/pain_scale_page.dart';
 import '../../features/medication_adherence/bindings/medication_adherence_binding.dart';
 import '../../features/medication_adherence/views/medication_adherence_page.dart';
+import '../../features/medication_adherence/views/medication_adherence_detail_page.dart';
 
 class AppPages {
   static const initial = Routes.splash;
@@ -137,6 +138,10 @@ class AppPages {
       name: Routes.medicationAdherence,
       page: () => const MedicationAdherencePage(),
       binding: MedicationAdherenceBinding(),
+    ),
+    GetPage(
+      name: Routes.medicationAdherenceDetail,
+      page: () => const MedicationAdherenceDetailPage(),
     ),
   ];
 }

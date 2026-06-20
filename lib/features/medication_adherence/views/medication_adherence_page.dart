@@ -83,15 +83,17 @@ class MedicationAdherencePage extends GetView<MedicationAdherenceController> {
     else if (patient.adherencePercentage >= 50) progressColor = AppColors.warning;
     else progressColor = AppColors.error;
 
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 12, offset: const Offset(0, 4))],
-      ),
-      child: Column(
+    return GestureDetector(
+      onTap: () => Get.toNamed('/medication-adherence-detail', arguments: patient),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 12, offset: const Offset(0, 4))],
+        ),
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -141,6 +143,7 @@ class MedicationAdherencePage extends GetView<MedicationAdherenceController> {
             ],
           ),
         ],
+      ),
       ),
     );
   }

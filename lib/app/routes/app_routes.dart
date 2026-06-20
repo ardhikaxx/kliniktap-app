@@ -25,4 +25,5 @@ abstract class Routes {
   static const triageBoard = '/triage-board';
   static const painScale = '/pain-scale';
   static const medicationAdherence = '/medication-adherence';
+  static const medicationAdherenceDetail = '/medication-adherence-detail';
 }
