@@ -72,11 +72,14 @@ class DashboardPage extends GetView<DashboardController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Daftar Antrean', style: AppTextStyles.h3),
-                              Text(
-                                'Lihat Semua',
-                                style: AppTextStyles.bodySmall.copyWith(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w700,
+                              GestureDetector(
+                                onTap: () => Get.toNamed('/queue-list'),
+                                child: Text(
+                                  'Lihat Semua',
+                                  style: AppTextStyles.bodySmall.copyWith(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                             ],

@@ -8,6 +8,8 @@ import '../../features/prescription/bindings/prescription_binding.dart';
 import '../../features/prescription/views/prescription_page.dart';
 import '../../features/medical_record/bindings/medical_record_detail_binding.dart';
 import '../../features/medical_record/views/medical_record_detail_page.dart';
+import '../../features/queue_list/bindings/queue_list_binding.dart';
+import '../../features/queue_list/views/queue_list_page.dart';
 
 class AppPages {
   static const initial = Routes.mainNav;
@@ -32,6 +34,11 @@ class AppPages {
       name: Routes.medicalRecordDetail,
       page: () => const MedicalRecordDetailPage(),
       binding: MedicalRecordDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.queueList,
+      page: () => const QueueListPage(),
+      binding: QueueListBinding(),
     ),
   ];
 }

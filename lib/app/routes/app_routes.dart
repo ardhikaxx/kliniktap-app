@@ -5,4 +5,5 @@ abstract class Routes {
   static const medicalRecord = '/medical-record';
   static const scheduleProfile = '/schedule-profile';
   static const medicalRecordDetail = '/medical-record-detail';
+  static const queueList = '/queue-list';
 }
