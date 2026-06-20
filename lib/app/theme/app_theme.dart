@@ -8,7 +8,7 @@ class AppTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.background,
-      fontFamily: AppTextStyles.fontFamily,
+      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
       textTheme: GoogleFonts.plusJakartaSansTextTheme().copyWith(
         displayLarge: AppTextStyles.h1.copyWith(color: AppColors.textPrimary),
         displayMedium: AppTextStyles.h2.copyWith(color: AppColors.textPrimary),
@@ -19,17 +19,16 @@ class AppTheme {
         labelSmall: AppTextStyles.caption.copyWith(color: AppColors.textHint),
         labelLarge: AppTextStyles.button.copyWith(color: Colors.white),
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.primary,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: TextStyle(
-          fontFamily: AppTextStyles.fontFamily,
+        titleTextStyle: GoogleFonts.plusJakartaSans(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
