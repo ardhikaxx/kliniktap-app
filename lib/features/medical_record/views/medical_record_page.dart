@@ -20,7 +20,7 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
             return ListView(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).padding.top + 90, 
-                bottom: 32,
+                bottom: 120,
               ),
               children: [
                 // Search Bar
@@ -153,7 +153,7 @@ class MedicalRecordPage extends GetView<MedicalRecordController> {
                         ),
                       ),
                     );
-                  }).toList(),
+                  }),
               ],
             );
           }),

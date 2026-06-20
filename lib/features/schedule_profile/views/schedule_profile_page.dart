@@ -38,7 +38,7 @@ class ScheduleProfilePage extends GetView<ScheduleProfileController> {
             return SingleChildScrollView(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).padding.top + 90, 
-                bottom: 40,
+                bottom: 120,
               ),
               child: Column(
                 children: [

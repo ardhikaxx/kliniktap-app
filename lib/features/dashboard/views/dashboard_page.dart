@@ -92,7 +92,7 @@ class DashboardPage extends GetView<DashboardController> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 120),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
