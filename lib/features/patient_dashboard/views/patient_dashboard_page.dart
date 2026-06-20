@@ -102,19 +102,20 @@ class PatientDashboardPage extends StatelessWidget {
             ),
           ),
           
-          // Glassmorphism Header
+          // Floating Pill Header
           Positioned(
             top: 0, left: 0, right: 0,
-            child: ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 child: Container(
-                  color: Colors.white.withValues(alpha: 0.8),
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).padding.top + 12,
-                    bottom: 12,
-                    left: 20,
-                    right: 20,
+                  height: 64,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.95),
+                    borderRadius: BorderRadius.circular(32),
+                    boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.08), blurRadius: 24, offset: const Offset(0, 8))],
                   ),
                   child: Row(
                     children: [
@@ -125,30 +126,33 @@ class PatientDashboardPage extends StatelessWidget {
                           border: Border.all(color: AppColors.primary, width: 2),
                         ),
                         child: const CircleAvatar(
-                          radius: 20,
+                          radius: 16,
                           backgroundColor: AppColors.primarySurface,
-                          child: Text('BS', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold)),
+                          child: Text('BS', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 12)),
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('${_getGreeting()},', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary)),
+                            Text('${_getGreeting()},', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary, fontSize: 10)),
                             Text('Budi Santoso', style: AppTextStyles.subtitle.copyWith(color: AppColors.textPrimary)),
                           ],
                         ),
                       ),
                       Container(
+                        width: 32, height: 32,
                         decoration: BoxDecoration(
                           color: AppColors.background,
                           shape: BoxShape.circle,
                           border: Border.all(color: AppColors.border),
                         ),
                         child: IconButton(
+                          padding: EdgeInsets.zero,
                           onPressed: () => Get.offAllNamed('/login'),
-                          icon: const Icon(Icons.logout_rounded, color: AppColors.textSecondary, size: 20),
+                          icon: const Icon(Icons.logout_rounded, color: AppColors.textSecondary, size: 16),
                         ),
                       ),
                     ],

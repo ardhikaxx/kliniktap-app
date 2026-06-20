@@ -67,16 +67,25 @@ class LabResultsPage extends StatelessWidget {
   Widget _buildFloatingHeader(BuildContext context, String title) {
     return Positioned(
       top: 0, left: 0, right: 0,
-      child: ClipRRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Container(
-            color: Colors.white.withValues(alpha: 0.85),
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 8, bottom: 12, left: 8, right: 20),
+            height: 64,
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.95),
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.08), blurRadius: 24, offset: const Offset(0, 8))],
+            ),
             child: Row(
               children: [
+                const SizedBox(width: 8),
                 IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textPrimary, size: 20), onPressed: () => Get.back()),
+                const Spacer(),
                 Text(title, style: AppTextStyles.h2.copyWith(fontSize: 18)),
+                const Spacer(),
+                const SizedBox(width: 48), // Balance for centering
               ],
             ),
           ),
