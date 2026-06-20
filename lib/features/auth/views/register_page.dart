@@ -10,17 +10,10 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: AppColors.textPrimary),
-          onPressed: () => Get.back(),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 110, bottom: 24, left: 24, right: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,7 +84,10 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 40),
             ],
           ),
-        ),
+          
+          // Floating Header
+          _buildFloatingHeader(context, 'Daftar Akun Baru'),
+        ],
       ),
     );
   }
@@ -121,6 +117,36 @@ class RegisterPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildFloatingHeader(BuildContext context, String title) {
+    return Positioned(
+      top: 0, left: 0, right: 0,
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Container(
+            height: 64,
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.95),
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [BoxShadow(color: AppColors.primary.withValues(alpha: 0.08), blurRadius: 24, offset: const Offset(0, 8))],
+            ),
+            child: Row(
+              children: [
+                const SizedBox(width: 8),
+                IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textPrimary, size: 20), onPressed: () => Get.back()),
+                const Spacer(),
+                Text(title, style: AppTextStyles.h2.copyWith(fontSize: 18)),
+                const Spacer(),
+                const SizedBox(width: 48), // Balance for centering
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
