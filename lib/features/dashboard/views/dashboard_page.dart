@@ -27,7 +27,7 @@ class DashboardPage extends GetView<DashboardController> {
             DashboardSliverAppBar(doctor: doctor),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
+                padding: const EdgeInsets.only(top: 24, bottom: 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,7 +81,6 @@ class DashboardPage extends GetView<DashboardController> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 16),
                         ],
                       ),
                     ),
