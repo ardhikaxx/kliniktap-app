@@ -32,25 +32,6 @@ class DashboardPage extends GetView<DashboardController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Text('Akses Cepat', style: AppTextStyles.h3),
-                    ),
-                    const SizedBox(height: 16),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        children: [
-                          _buildQuickAction(Icons.calculate_rounded, 'Kalkulator Medis', AppColors.primary, () => Get.toNamed('/medical-calculator')),
-                          const SizedBox(width: 12),
-                          _buildQuickAction(Icons.menu_book_rounded, 'Katalog Obat', AppColors.secondary, () => Get.toNamed('/drug-catalog')),
-                          const SizedBox(width: 12),
-                          _buildQuickAction(Icons.people_alt_rounded, 'Tim & Staf', const Color(0xFFF5A623), () => Get.toNamed('/staff-management')),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,21 +68,40 @@ class DashboardPage extends GetView<DashboardController> {
                             ],
                           ),
                           const SizedBox(height: 32),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Daftar Antrean', style: AppTextStyles.h3),
-                              GestureDetector(
-                                onTap: () => Get.toNamed('/queue-list'),
-                                child: Text(
-                                  'Lihat Semua',
-                                  style: AppTextStyles.bodySmall.copyWith(
-                                    color: AppColors.primary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                          Text('Akses Cepat', style: AppTextStyles.h3),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          _buildQuickAction(Icons.calculate_rounded, 'Kalkulator\nMedis', AppColors.primary, () => Get.toNamed('/medical-calculator')),
+                          const SizedBox(width: 12),
+                          _buildQuickAction(Icons.menu_book_rounded, 'Katalog\nObat', AppColors.secondary, () => Get.toNamed('/drug-catalog')),
+                          const SizedBox(width: 12),
+                          _buildQuickAction(Icons.people_alt_rounded, 'Tim &\nStaf', const Color(0xFFF5A623), () => Get.toNamed('/staff-management')),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Daftar Antrean', style: AppTextStyles.h3),
+                          GestureDetector(
+                            onTap: () => Get.toNamed('/queue-list'),
+                            child: Text(
+                              'Lihat Semua',
+                              style: AppTextStyles.bodySmall.copyWith(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
@@ -133,7 +133,8 @@ class DashboardPage extends GetView<DashboardController> {
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        width: 100,
+        width: 110,
+        height: 120,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         decoration: BoxDecoration(
           color: AppColors.surface,
