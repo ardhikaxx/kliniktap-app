@@ -40,22 +40,42 @@ class ScheduleProfilePage extends GetView<ScheduleProfileController> {
             children: [
               // Header Profil
               Container(
-                color: AppColors.surface,
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [AppColors.primary, AppColors.primaryDark],
+                  ),
+                ),
+                padding: const EdgeInsets.only(top: 32, bottom: 40, left: 16, right: 16),
                 child: Column(
                   children: [
-                    AppAvatar(imageUrl: doc.avatarUrl, size: 100),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 3),
+                      ),
+                      child: AppAvatar(imageUrl: doc.avatarUrl, size: 100),
+                    ),
                     const SizedBox(height: 16),
-                    Text(doc.name, style: AppTextStyles.h2),
+                    Text(doc.name, style: AppTextStyles.h2.copyWith(color: Colors.white)),
                     const SizedBox(height: 4),
-                    Text(doc.specialty, style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
+                    Text(doc.specialty, style: AppTextStyles.body.copyWith(color: Colors.white.withValues(alpha: 0.8))),
                     const SizedBox(height: 16),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: doc.isOnline ? AppColors.success.withValues(alpha: 0.1) : AppColors.statusOffline.withValues(alpha: 0.1),
+                        color: doc.isOnline ? AppColors.success : AppColors.statusOffline,
                         borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -63,17 +83,15 @@ class ScheduleProfilePage extends GetView<ScheduleProfileController> {
                           Container(
                             width: 10,
                             height: 10,
-                            decoration: BoxDecoration(
-                              color: doc.isOnline ? AppColors.success : AppColors.statusOffline,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
                               shape: BoxShape.circle,
                             ),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             doc.isOnline ? 'Sedang Aktif' : 'Tidak Aktif',
-                            style: AppTextStyles.caption.copyWith(
-                              color: doc.isOnline ? AppColors.success : AppColors.statusOffline,
-                            ),
+                            style: AppTextStyles.caption.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
