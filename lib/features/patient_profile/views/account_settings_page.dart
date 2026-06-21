@@ -23,7 +23,7 @@ class AccountSettingsPage extends StatelessWidget {
                       Container(
                         width: 100, height: 100,
                         decoration: BoxDecoration(color: AppColors.primarySurface, shape: BoxShape.circle, border: Border.all(color: AppColors.primary, width: 4)),
-                        child: const Center(child: Text('BS', style: TextStyle(fontSize: 36, color: AppColors.primary, fontWeight: FontWeight.bold))),
+                        child: const Center(child: Text('YA', style: TextStyle(fontSize: 36, color: AppColors.primary, fontWeight: FontWeight.bold))),
                       ),
                       Positioned(
                         bottom: 0, right: 0,
@@ -39,14 +39,14 @@ class AccountSettingsPage extends StatelessWidget {
                 const SizedBox(height: 32),
                 
                 _buildSectionTitle('Data Pribadi'),
-                _buildTextField('Nama Lengkap', 'Budi Santoso'),
+                _buildTextField('Nama Lengkap', 'Yanuar Ardhika R.U'),
                 _buildTextField('Nomor Induk Kependudukan (NIK)', '3522109876543210', enabled: false),
                 _buildTextField('Tanggal Lahir', '12 Agustus 1980', enabled: false),
                 
                 const SizedBox(height: 24),
                 _buildSectionTitle('Kontak'),
                 _buildTextField('Nomor Handphone', '081234567890'),
-                _buildTextField('Email', 'budi.santoso@email.com'),
+                _buildTextField('Email', 'yanuar.ardhika@email.com'),
                 
                 const SizedBox(height: 32),
                 ElevatedButton(

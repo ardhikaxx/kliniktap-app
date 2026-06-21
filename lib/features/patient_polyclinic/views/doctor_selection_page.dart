@@ -46,7 +46,7 @@ class DoctorSelectionPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 
                 _buildDoctorCard(
-                  name: 'dr. Yanuar Ardhika R.U, Sp.PD',
+                  name: 'dr. Andi Pratama, Sp.PD',
                   specialty: 'Spesialis Penyakit Dalam',
                   rating: '4.9',
                   patients: '1.2k+ Pasien',
@@ -62,7 +62,7 @@ class DoctorSelectionPage extends StatelessWidget {
                   color: Colors.teal,
                 ),
                 _buildDoctorCard(
-                  name: 'dr. Budi Santoso, Sp.PD',
+                  name: 'dr. Hendra Wijaya, Sp.PD',
                   specialty: 'Spesialis Penyakit Dalam',
                   rating: '4.8',
                   patients: '2.1k+ Pasien',

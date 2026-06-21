@@ -138,7 +138,7 @@ class PatientDashboardPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('${_getGreeting()},', style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary, fontSize: 10)),
-                            Text('Budi Santoso', style: AppTextStyles.subtitle.copyWith(color: AppColors.textPrimary)),
+                            Text('Yanuar Ardhika R.U', style: AppTextStyles.subtitle.copyWith(color: AppColors.textPrimary)),
                           ],
                         ),
                       ),
@@ -232,7 +232,7 @@ class PatientDashboardPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Pasien', style: AppTextStyles.caption.copyWith(color: Colors.white.withValues(alpha: 0.8))),
-                      Text('BUDI SANTOSO', style: AppTextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
+                      Text('YANUAR ARDHIKA R.U', style: AppTextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1)),
                     ],
                   ),
                   Image.network(
@@ -315,7 +315,7 @@ class PatientDashboardPage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text('dr. Yanuar Ardhika R.U, Sp.PD', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
+                      Text('dr. Andi Pratama, Sp.PD', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
                       const SizedBox(height: 12),
                       Row(
                         children: [

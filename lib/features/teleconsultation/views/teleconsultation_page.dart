@@ -49,7 +49,7 @@ class TeleconsultationPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 
                 _buildDoctorCard('dr. Sarah Maida, Sp.A', 'Dokter Anak', '4.9', 'Tersedia', true),
-                _buildDoctorCard('dr. Budi Santoso, Sp.PD', 'Penyakit Dalam', '4.8', 'Sedang Konsultasi', false),
+                _buildDoctorCard('dr. Andi Pratama, Sp.PD', 'Penyakit Dalam', '4.8', 'Sedang Konsultasi', false),
                 _buildDoctorCard('dr. Clara Tania, Sp.KK', 'Kulit & Kelamin', '5.0', 'Tersedia', true),
               ],
             ),

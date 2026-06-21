@@ -42,12 +42,10 @@ class PatientProfilePage extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(color: AppColors.primary, width: 4),
                         ),
-                        child: const Center(
-                          child: Text('BS', style: TextStyle(fontSize: 36, color: AppColors.primary, fontWeight: FontWeight.bold)),
-                        ),
+                        child: const Center(child: Text('YA', style: TextStyle(fontSize: 28, color: AppColors.primary, fontWeight: FontWeight.bold))),
                       ),
                       const SizedBox(height: 16),
-                      Text('Budi Santoso', style: AppTextStyles.h2),
+                      Text('Yanuar Ardhika R.U', style: AppTextStyles.h2),
                       const SizedBox(height: 4),
                       Text('Laki-laki • 45 Tahun', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
                       

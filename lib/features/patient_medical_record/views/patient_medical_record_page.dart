@@ -93,7 +93,7 @@ class PatientMedicalRecordPage extends StatelessWidget {
                   '3 x Sehari (Sesudah Makan) - 30 Tablet',
                   Icons.medication_rounded,
                   AppColors.secondary,
-                  'Diresepkan oleh dr. Yanuar Ardhika',
+                  'Diresepkan oleh dr. Andi Pratama',
                 ),
               ],
             ),
