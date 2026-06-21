@@ -5,6 +5,8 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import 'notifications_page.dart';
 import 'qr_scanner_page.dart';
+import 'doctor_profile_page.dart';
+import 'article_detail_page.dart';
 import '../../main_nav/controllers/main_nav_controller.dart';
 
 class PatientDashboardPage extends StatelessWidget {
@@ -588,8 +590,10 @@ class PatientDashboardPage extends StatelessWidget {
         itemCount: articles.length,
         itemBuilder: (context, index) {
           final article = articles[index];
-          return Container(
-            width: 240,
+          return GestureDetector(
+            onTap: () => Get.to(() => ArticleDetailPage(article: article)),
+            child: Container(
+              width: 240,
             margin: const EdgeInsets.only(right: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -618,7 +622,7 @@ class PatientDashboardPage extends StatelessWidget {
                 ),
               ],
             ),
-          );
+          ));
         },
       ),
     );
@@ -639,8 +643,10 @@ class PatientDashboardPage extends StatelessWidget {
         itemCount: doctors.length,
         itemBuilder: (context, index) {
           final doctor = doctors[index];
-          return Container(
-            width: 160,
+          return GestureDetector(
+            onTap: () => Get.to(() => DoctorProfilePage(doctor: doctor)),
+            child: Container(
+              width: 160,
             margin: const EdgeInsets.only(right: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -682,7 +688,7 @@ class PatientDashboardPage extends StatelessWidget {
                 ),
               ],
             ),
-          );
+          ));
         },
       ),
     );
