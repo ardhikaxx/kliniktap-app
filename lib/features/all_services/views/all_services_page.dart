@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'service_detail_page.dart';
 
 class AllServicesPage extends StatelessWidget {
   const AllServicesPage({super.key});
@@ -60,7 +61,9 @@ class AllServicesPage extends StatelessWidget {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   title: Text(items[index], style: AppTextStyles.body),
                   trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16, color: AppColors.textHint),
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => ServiceDetailPage(title: items[index]));
+                  },
                 );
               },
             ),

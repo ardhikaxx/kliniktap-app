@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'doctor_selection_page.dart';
 
 class PolyclinicPage extends StatelessWidget {
   const PolyclinicPage({super.key});
@@ -121,7 +122,7 @@ class PolyclinicPage extends StatelessWidget {
         ),
         trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textHint),
         onTap: () {
-          Get.snackbar('Reservasi', 'Memeriksa integrasi jadwal BPJS Antrol v2...', backgroundColor: Colors.white);
+          Get.to(() => DoctorSelectionPage(departmentName: title));
         },
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'pdf_viewer_page.dart';
 
 class LabResultsPage extends StatelessWidget {
   const LabResultsPage({super.key});
@@ -54,7 +55,9 @@ class LabResultsPage extends StatelessWidget {
           Text(title, style: AppTextStyles.subtitle),
           const SizedBox(height: 16),
           OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => PdfViewerPage(title: title));
+            },
             icon: const Icon(Icons.picture_as_pdf_rounded, size: 16),
             label: const Text('Unduh PDF'),
             style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(40), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),

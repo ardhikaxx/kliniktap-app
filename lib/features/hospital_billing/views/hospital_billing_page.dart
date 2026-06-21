@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'payment_page.dart';
+import '../../lab_results/views/pdf_viewer_page.dart';
 
 class HospitalBillingPage extends StatelessWidget {
   const HospitalBillingPage({super.key});
@@ -59,13 +61,17 @@ class HospitalBillingPage extends StatelessWidget {
               Text(amount, style: AppTextStyles.h2.copyWith(color: AppColors.primary)),
               if (!isPaid)
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const PaymentPage());
+                  },
                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                   child: const Text('Bayar', style: TextStyle(color: Colors.white)),
                 )
               else
                 OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => PdfViewerPage(title: 'Kwitansi $inv'));
+                  },
                   icon: const Icon(Icons.download_rounded, size: 16),
                   label: const Text('Kwitansi'),
                 )

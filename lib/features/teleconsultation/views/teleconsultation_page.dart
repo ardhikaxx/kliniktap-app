@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'video_call_page.dart';
 
 class TeleconsultationPage extends StatelessWidget {
   const TeleconsultationPage({super.key});
@@ -99,7 +100,9 @@ class TeleconsultationPage extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const VideoCallPage());
+            },
             style: IconButton.styleFrom(backgroundColor: AppColors.primarySurface),
             icon: const Icon(Icons.call_rounded, color: AppColors.primary),
           ),

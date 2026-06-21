@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'account_settings_page.dart';
+import 'security_settings_page.dart';
+import 'help_center_page.dart';
+import '../../hospital_billing/views/hospital_billing_page.dart';
 
 class PatientProfilePage extends StatelessWidget {
   const PatientProfilePage({super.key});
@@ -90,10 +94,10 @@ class PatientProfilePage extends StatelessWidget {
                 const SizedBox(height: 24),
                 
                 // Settings Menu
-                _buildMenu(Icons.settings_rounded, 'Pengaturan Akun'),
-                _buildMenu(Icons.shield_rounded, 'Keamanan & Biometrik'),
-                _buildMenu(Icons.receipt_long_rounded, 'Riwayat Tagihan & Asuransi'),
-                _buildMenu(Icons.help_rounded, 'Bantuan & FAQ'),
+                _buildMenu(Icons.settings_rounded, 'Pengaturan Akun', onTap: () => Get.to(() => const AccountSettingsPage())),
+                _buildMenu(Icons.shield_rounded, 'Keamanan & Biometrik', onTap: () => Get.to(() => const SecuritySettingsPage())),
+                _buildMenu(Icons.receipt_long_rounded, 'Riwayat Tagihan & Asuransi', onTap: () => Get.to(() => const HospitalBillingPage())),
+                _buildMenu(Icons.help_rounded, 'Bantuan & FAQ', onTap: () => Get.to(() => const HelpCenterPage())),
                 
                 const SizedBox(height: 32),
                 OutlinedButton.icon(
@@ -137,7 +141,7 @@ class PatientProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMenu(IconData icon, String title) {
+  Widget _buildMenu(IconData icon, String title, {VoidCallback? onTap}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -149,7 +153,7 @@ class PatientProfilePage extends StatelessWidget {
         leading: Icon(icon, color: AppColors.textSecondary),
         title: Text(title, style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600)),
         trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textHint),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }
