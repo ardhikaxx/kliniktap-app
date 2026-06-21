@@ -99,7 +99,66 @@ class PatientProfilePage extends StatelessWidget {
                 
                 const SizedBox(height: 32),
                 OutlinedButton.icon(
-                  onPressed: () => Get.offAllNamed('/login'),
+                  onPressed: () {
+                    Get.bottomSheet(
+                      Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(32), topRight: Radius.circular(32)),
+                        ),
+                        child: SafeArea(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(width: 40, height: 4, decoration: BoxDecoration(color: AppColors.border, borderRadius: BorderRadius.circular(2))),
+                              const SizedBox(height: 24),
+                              Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(color: AppColors.error.withValues(alpha: 0.1), shape: BoxShape.circle),
+                                child: const Icon(Icons.logout_rounded, color: AppColors.error, size: 40),
+                              ),
+                              const SizedBox(height: 16),
+                              Text('Keluar dari Akun?', style: AppTextStyles.h2),
+                              const SizedBox(height: 8),
+                              Text('Anda harus login kembali untuk mengakses layanan KlinikTap.', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary), textAlign: TextAlign.center),
+                              const SizedBox(height: 32),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () => Get.back(),
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                        side: BorderSide(color: AppColors.border),
+                                      ),
+                                      child: Text('Batal', style: AppTextStyles.button.copyWith(color: AppColors.textPrimary)),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                        Get.offAllNamed('/login');
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.error,
+                                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                      ),
+                                      child: Text('Keluar', style: AppTextStyles.button.copyWith(color: Colors.white)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   icon: const Icon(Icons.logout_rounded),
                   label: const Text('Keluar dari Akun'),
                   style: OutlinedButton.styleFrom(
