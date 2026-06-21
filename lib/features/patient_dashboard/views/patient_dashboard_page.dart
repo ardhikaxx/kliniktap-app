@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
 import 'notifications_page.dart';
+import 'qr_scanner_page.dart';
 import '../../main_nav/controllers/main_nav_controller.dart';
 
 class PatientDashboardPage extends StatelessWidget {
