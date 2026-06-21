@@ -22,6 +22,20 @@ class PatientDashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.snackbar(
+            'Tanya KlinikTap',
+            'Halo! Asisten Virtual kami siap membantu Anda.',
+            backgroundColor: AppColors.primary,
+            colorText: Colors.white,
+            icon: const Icon(Icons.support_agent_rounded, color: Colors.white),
+            snackPosition: SnackPosition.TOP,
+          );
+        },
+        backgroundColor: AppColors.primary,
+        child: const Icon(Icons.support_agent_rounded, color: Colors.white),
+      ),
       body: Stack(
         children: [
           // Dynamic Background Element
@@ -101,6 +115,9 @@ class PatientDashboardPage extends StatelessWidget {
                 ),
                 
                 const SizedBox(height: 24),
+                _buildPromoCarousel(),
+                
+                const SizedBox(height: 32),
                 
                 // Active Queue (Boarding Pass Style)
                 Text('Antrean Aktif Saat Ini', style: AppTextStyles.h2.copyWith(fontSize: 20)),
@@ -485,6 +502,73 @@ class PatientDashboardPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPromoCarousel() {
+    final List<Map<String, dynamic>> promos = [
+      {
+        'title': 'Medical Check Up\nKeluarga',
+        'subtitle': 'Diskon 20% khusus member',
+        'color1': const Color(0xFF3B82F6),
+        'color2': const Color(0xFF2563EB),
+        'icon': Icons.family_restroom_rounded,
+      },
+      {
+        'title': 'Layanan Homecare\n24 Jam',
+        'subtitle': 'Dokter ke rumah Anda',
+        'color1': const Color(0xFF10B981),
+        'color2': const Color(0xFF059669),
+        'icon': Icons.home_repair_service_rounded,
+      },
+    ];
+
+    return SizedBox(
+      height: 160,
+      child: PageView.builder(
+        itemCount: promos.length,
+        controller: PageController(viewportFraction: 1.0),
+        itemBuilder: (context, index) {
+          final promo = promos[index];
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [promo['color1'] as Color, promo['color2'] as Color],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(color: (promo['color1'] as Color).withValues(alpha: 0.3), blurRadius: 15, offset: const Offset(0, 8)),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(8)),
+                        child: Text('PROMO', style: AppTextStyles.caption.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(promo['title'] as String, style: AppTextStyles.h2.copyWith(color: Colors.white, fontSize: 18)),
+                      const SizedBox(height: 4),
+                      Text(promo['subtitle'] as String, style: AppTextStyles.body.copyWith(color: Colors.white.withValues(alpha: 0.9))),
+                    ],
+                  ),
+                ),
+                Icon(promo['icon'] as IconData, size: 80, color: Colors.white.withValues(alpha: 0.2)),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
