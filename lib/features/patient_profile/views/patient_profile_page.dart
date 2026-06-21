@@ -47,7 +47,7 @@ class PatientProfilePage extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text('Yanuar Ardhika R.U', style: AppTextStyles.h2),
                       const SizedBox(height: 4),
-                      Text('Laki-laki • 45 Tahun', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
+                      Text('Laki-laki • 25 Tahun', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary)),
                       
                       const SizedBox(height: 24),
                       Container(

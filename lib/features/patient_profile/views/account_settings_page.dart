@@ -41,7 +41,7 @@ class AccountSettingsPage extends StatelessWidget {
                 _buildSectionTitle('Data Pribadi'),
                 _buildTextField('Nama Lengkap', 'Yanuar Ardhika R.U'),
                 _buildTextField('Nomor Induk Kependudukan (NIK)', '3522109876543210', enabled: false),
-                _buildTextField('Tanggal Lahir', '12 Agustus 1980', enabled: false),
+                _buildTextField('Tanggal Lahir', '12 Agustus 2000', enabled: false),
                 
                 const SizedBox(height: 24),
                 _buildSectionTitle('Kontak'),
