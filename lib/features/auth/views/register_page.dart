@@ -84,11 +84,12 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 40),
             ],
           ),
+        ),
           
-          // Floating Header
-          _buildFloatingHeader(context, 'Daftar Akun Baru'),
-        ],
-      ),
+        // Floating Header
+        _buildFloatingHeader(context, 'Daftar Akun Baru'),
+      ],
+    ),
     );
   }
 
