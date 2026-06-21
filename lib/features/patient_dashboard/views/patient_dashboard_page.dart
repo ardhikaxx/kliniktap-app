@@ -460,23 +460,13 @@ class PatientDashboardPage extends StatelessWidget {
                   ],
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {
-                    Get.snackbar(
-                      'Check-In Berhasil',
-                      'Lokasi Anda telah diverifikasi oleh sistem antrean.',
-                      backgroundColor: AppColors.success,
-                      colorText: Colors.white,
-                      icon: const Icon(Icons.check_circle_rounded, color: Colors.white),
-                      margin: const EdgeInsets.all(16),
-                    );
-                  },
+                  onPressed: () => Get.to(() => const QrScannerPage()),
                   icon: const Icon(Icons.qr_code_scanner_rounded, size: 20),
-                  label: const Text('Check-In RS'),
+                  label: const Text('Scan KiosK'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   ),
                 ),

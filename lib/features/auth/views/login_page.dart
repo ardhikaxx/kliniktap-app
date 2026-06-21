@@ -91,26 +91,66 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.dialog(
-                          const Center(
-                            child: CircularProgressIndicator(color: Colors.white),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.dialog(
+                                const Center(
+                                  child: CircularProgressIndicator(color: Colors.white),
+                                ),
+                                barrierDismissible: false,
+                              );
+                              Future.delayed(const Duration(milliseconds: 1500), () {
+                                Get.back();
+                                Get.offAllNamed('/main');
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              minimumSize: const Size.fromHeight(60),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              elevation: 4,
+                            ),
+                            child: Text('Masuk', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 18)),
                           ),
-                          barrierDismissible: false,
-                        );
-                        Future.delayed(const Duration(milliseconds: 1500), () {
-                          Get.back();
-                          Get.offAllNamed('/main');
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        minimumSize: const Size.fromHeight(60),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        elevation: 4,
-                      ),
-                      child: Text('Masuk', style: AppTextStyles.button.copyWith(color: Colors.white, fontSize: 18)),
+                        ),
+                        const SizedBox(width: 16),
+                        Container(
+                          height: 60, width: 60,
+                          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), border: Border.all(color: AppColors.primary, width: 2)),
+                          child: IconButton(
+                            onPressed: () {
+                              Get.dialog(
+                                Dialog(
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(32),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.fingerprint_rounded, size: 80, color: AppColors.primary),
+                                        const SizedBox(height: 24),
+                                        Text('Verifikasi Biometrik', style: AppTextStyles.h2),
+                                        const SizedBox(height: 8),
+                                        Text('Sentuh sensor sidik jari untuk login', style: AppTextStyles.body.copyWith(color: AppColors.textSecondary), textAlign: TextAlign.center),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                              Future.delayed(const Duration(seconds: 2), () {
+                                if (Get.isDialogOpen ?? false) {
+                                  Get.back();
+                                  Get.offAllNamed('/main');
+                                }
+                              });
+                            },
+                            icon: const Icon(Icons.fingerprint_rounded, color: AppColors.primary, size: 32),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
