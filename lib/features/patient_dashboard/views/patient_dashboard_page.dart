@@ -7,6 +7,7 @@ import 'notifications_page.dart';
 import 'qr_scanner_page.dart';
 import 'doctor_profile_page.dart';
 import 'article_detail_page.dart';
+import 'virtual_assistant_page.dart';
 import '../../main_nav/controllers/main_nav_controller.dart';
 
 class PatientDashboardPage extends StatelessWidget {
@@ -27,16 +28,7 @@ class PatientDashboardPage extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 100), // Angkat tombol agar tidak tertutup nav bottom
         child: FloatingActionButton(
-          onPressed: () {
-            Get.snackbar(
-              'Tanya KlinikTap',
-              'Halo! Asisten Virtual kami siap membantu Anda.',
-              backgroundColor: AppColors.primary,
-              colorText: Colors.white,
-              icon: const Icon(Icons.support_agent_rounded, color: Colors.white),
-              snackPosition: SnackPosition.TOP,
-            );
-          },
+          onPressed: () => Get.to(() => const VirtualAssistantPage()),
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.support_agent_rounded, color: Colors.white),
         ),
