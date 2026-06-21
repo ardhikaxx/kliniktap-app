@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_text_styles.dart';
+import 'notifications_page.dart';
 import '../../main_nav/controllers/main_nav_controller.dart';
 
 class PatientDashboardPage extends StatelessWidget {
@@ -41,7 +42,13 @@ class PatientDashboardPage extends StatelessWidget {
             ),
           ),
           
-          SingleChildScrollView(
+          RefreshIndicator(
+            color: AppColors.primary,
+            backgroundColor: Colors.white,
+            onRefresh: () async {
+              await Future.delayed(const Duration(seconds: 2));
+            },
+            child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top + 110,
@@ -101,6 +108,7 @@ class PatientDashboardPage extends StatelessWidget {
               ],
             ),
           ),
+          ),
           
           // Floating Pill Header
           Positioned(
@@ -128,7 +136,7 @@ class PatientDashboardPage extends StatelessWidget {
                         child: const CircleAvatar(
                           radius: 16,
                           backgroundColor: AppColors.primarySurface,
-                          child: Text('BS', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 12)),
+                          child: Text('YA', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 12)),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -142,6 +150,20 @@ class PatientDashboardPage extends StatelessWidget {
                           ],
                         ),
                       ),
+                      Container(
+                        width: 32, height: 32,
+                        decoration: BoxDecoration(
+                          color: AppColors.background,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppColors.border),
+                        ),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () => Get.to(() => const NotificationsPage()),
+                          icon: const Icon(Icons.notifications_outlined, color: AppColors.textSecondary, size: 16),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
                       Container(
                         width: 32, height: 32,
                         decoration: BoxDecoration(

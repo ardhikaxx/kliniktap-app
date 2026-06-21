@@ -56,17 +56,26 @@ class RegisterPage extends StatelessWidget {
                     
                     ElevatedButton(
                       onPressed: () {
-                        Get.snackbar(
-                          'Pendaftaran Berhasil',
-                          'Data Anda telah divalidasi oleh sistem Dukcapil. Silakan login.',
-                          backgroundColor: AppColors.success,
-                          colorText: Colors.white,
-                          icon: const Icon(Icons.check_circle_rounded, color: Colors.white),
-                          margin: const EdgeInsets.all(16),
-                          snackPosition: SnackPosition.TOP,
+                        Get.dialog(
+                          const Center(
+                            child: CircularProgressIndicator(color: Colors.white),
+                          ),
+                          barrierDismissible: false,
                         );
                         Future.delayed(const Duration(seconds: 2), () {
-                          Get.offAllNamed('/login');
+                          Get.back();
+                          Get.snackbar(
+                            'Pendaftaran Berhasil',
+                            'Data Anda telah divalidasi oleh sistem Dukcapil. Silakan login.',
+                            backgroundColor: AppColors.success,
+                            colorText: Colors.white,
+                            icon: const Icon(Icons.check_circle_rounded, color: Colors.white),
+                            margin: const EdgeInsets.all(16),
+                            snackPosition: SnackPosition.TOP,
+                          );
+                          Future.delayed(const Duration(seconds: 2), () {
+                            Get.offAllNamed('/login');
+                          });
                         });
                       },
                       style: ElevatedButton.styleFrom(

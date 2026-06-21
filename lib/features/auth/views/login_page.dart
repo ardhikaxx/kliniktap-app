@@ -65,10 +65,45 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    Text('Tanggal Lahir (DDMMYYYY)', style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.bold, color: AppColors.textSecondary)),
+                    const SizedBox(height: 12),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: TextField(
+                        obscureText: true,
+                        keyboardType: TextInputType.number,
+                        style: AppTextStyles.body.copyWith(fontSize: 18, letterSpacing: 2),
+                        maxLength: 8,
+                        decoration: InputDecoration(
+                          hintText: 'Contoh: 12082000',
+                          hintStyle: AppTextStyles.body.copyWith(color: AppColors.textHint, letterSpacing: 0),
+                          prefixIcon: const Icon(Icons.calendar_month_rounded, color: AppColors.textSecondary),
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          counterText: '',
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 24),
                     
                     ElevatedButton(
-                      onPressed: () => Get.offAllNamed('/main'),
+                      onPressed: () {
+                        Get.dialog(
+                          const Center(
+                            child: CircularProgressIndicator(color: Colors.white),
+                          ),
+                          barrierDismissible: false,
+                        );
+                        Future.delayed(const Duration(milliseconds: 1500), () {
+                          Get.back();
+                          Get.offAllNamed('/main');
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         minimumSize: const Size.fromHeight(60),
