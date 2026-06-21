@@ -106,6 +106,16 @@ class PatientDashboardPage extends StatelessWidget {
                 Text('Antrean Aktif Saat Ini', style: AppTextStyles.h2.copyWith(fontSize: 20)),
                 const SizedBox(height: 16),
                 _buildActiveQueueTicket(),
+
+                const SizedBox(height: 32),
+                Text('Artikel Kesehatan Terkini', style: AppTextStyles.h2.copyWith(fontSize: 20)),
+                const SizedBox(height: 16),
+                _buildHealthArticles(),
+                
+                const SizedBox(height: 32),
+                Text('Dokter Tersedia Hari Ini', style: AppTextStyles.h2.copyWith(fontSize: 20)),
+                const SizedBox(height: 16),
+                _buildAvailableDoctors(),
               ],
             ),
           ),
@@ -475,6 +485,121 @@ class PatientDashboardPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildHealthArticles() {
+    final List<Map<String, dynamic>> articles = [
+      {'title': 'Pentingnya Cek Gula Darah Rutin', 'category': 'Edukasi', 'color': const Color(0xFF3B82F6), 'icon': Icons.bloodtype_rounded},
+      {'title': 'Promo Vaksin Flu Akhir Tahun', 'category': 'Promo', 'color': const Color(0xFFF59E0B), 'icon': Icons.vaccines_rounded},
+      {'title': 'Mengenal Gejala Awal Demam Berdarah', 'category': 'Kesehatan', 'color': const Color(0xFFEF4444), 'icon': Icons.coronavirus_rounded},
+    ];
+
+    return SizedBox(
+      height: 140,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        itemCount: articles.length,
+        itemBuilder: (context, index) {
+          final article = articles[index];
+          return Container(
+            width: 240,
+            margin: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 5))],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(color: (article['color'] as Color).withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+                  child: Text(article['category'] as String, style: AppTextStyles.caption.copyWith(color: article['color'] as Color, fontWeight: FontWeight.bold)),
+                ),
+                const Spacer(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Text(article['title'] as String, style: AppTextStyles.body.copyWith(fontWeight: FontWeight.bold), maxLines: 2, overflow: TextOverflow.ellipsis),
+                    ),
+                    const SizedBox(width: 12),
+                    Icon(article['icon'] as IconData, color: article['color'] as Color, size: 32),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildAvailableDoctors() {
+    final List<Map<String, dynamic>> doctors = [
+      {'name': 'dr. Andi Pratama, Sp.PD', 'spesialis': 'Penyakit Dalam', 'rating': '4.9'},
+      {'name': 'dr. Budi Santoso, Sp.A', 'spesialis': 'Anak', 'rating': '4.8'},
+      {'name': 'dr. Citra Lestari, Sp.OG', 'spesialis': 'Kandungan', 'rating': '5.0'},
+    ];
+
+    return SizedBox(
+      height: 180,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        itemCount: doctors.length,
+        itemBuilder: (context, index) {
+          final doctor = doctors[index];
+          return Container(
+            width: 160,
+            margin: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    const CircleAvatar(
+                      radius: 36,
+                      backgroundColor: AppColors.primarySurface,
+                      child: Icon(Icons.person_rounded, size: 36, color: AppColors.primary),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                      child: const Icon(Icons.verified_rounded, color: AppColors.success, size: 16),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text(doctor['name'] as String, style: AppTextStyles.body.copyWith(fontWeight: FontWeight.bold, fontSize: 13), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis),
+                const SizedBox(height: 4),
+                Text(doctor['spesialis'] as String, style: AppTextStyles.caption.copyWith(color: AppColors.textSecondary), textAlign: TextAlign.center),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.star_rounded, color: AppColors.warning, size: 14),
+                    const SizedBox(width: 4),
+                    Text(doctor['rating'] as String, style: AppTextStyles.caption.copyWith(fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
