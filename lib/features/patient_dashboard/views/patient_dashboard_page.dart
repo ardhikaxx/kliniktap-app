@@ -24,19 +24,22 @@ class PatientDashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.snackbar(
-            'Tanya KlinikTap',
-            'Halo! Asisten Virtual kami siap membantu Anda.',
-            backgroundColor: AppColors.primary,
-            colorText: Colors.white,
-            icon: const Icon(Icons.support_agent_rounded, color: Colors.white),
-            snackPosition: SnackPosition.TOP,
-          );
-        },
-        backgroundColor: AppColors.primary,
-        child: const Icon(Icons.support_agent_rounded, color: Colors.white),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100), // Angkat tombol agar tidak tertutup nav bottom
+        child: FloatingActionButton(
+          onPressed: () {
+            Get.snackbar(
+              'Tanya KlinikTap',
+              'Halo! Asisten Virtual kami siap membantu Anda.',
+              backgroundColor: AppColors.primary,
+              colorText: Colors.white,
+              icon: const Icon(Icons.support_agent_rounded, color: Colors.white),
+              snackPosition: SnackPosition.TOP,
+            );
+          },
+          backgroundColor: AppColors.primary,
+          child: const Icon(Icons.support_agent_rounded, color: Colors.white),
+        ),
       ),
       body: Stack(
         children: [
